@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}{{ benefit.name }} — Senior Benefits AI{% endblock %}
+{% block description %}{{ benefit.who }}{% endblock %}
+
+{% block hero %}
+<header class="hero">
+  <h1>{{ benefit.name }}</h1>
+  <p>{% if benefit.age_start %}<span class="pill">Age {{ benefit.age_start }}+</span>{% else %}<span class="pill muted">Any age</span>{% endif %} &nbsp;<span class="pill muted">{{ category.emoji }} {{ category.name }}</span></p>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="crumb"><a href="/">Home</a> &raquo; <a href="/federal">Federal benefits</a> &raquo; {{ benefit.name }}</div>
+
+<div class="card">
+  <h3>Who qualifies</h3>
+  <p>{{ benefit.who }}</p>
+
+  <h3>What you get</h3>
+  <p>{{ benefit.what }}</p>
+
+  <h3>Tips that matter</h3>
+  <p>{{ benefit.tips }}</p>
+
+  <h3>How to apply</h3>
+  <p>{{ benefit.apply }}</p>
+
+  <p style="margin-top:22px;"><a href="{{ benefit.url }}" target="_blank" rel="noopener" class="primary" style="display:inline-block;background:var(--accent);color:#fff;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:600;">Go to {{ benefit.agency }} →</a></p>
+</div>
+
+<div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+  <h3 style="margin-top:0;">State-level help on top of this</h3>
+  <p>Most states layer their own programs on top of this federal one — pharmacy assistance, property tax relief, state Medicaid waivers. <a href="/#state-picker">Pick your state</a> to see what's available where you live.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,306 @@
+{
+  "categories": [
+    {
+      "id": "income",
+      "name": "Income & Cash Benefits",
+      "emoji": "💰",
+      "blurb": "Monthly cash from Social Security, SSI, and veterans' pension."
+    },
+    {
+      "id": "health",
+      "name": "Health Coverage",
+      "emoji": "🏥",
+      "blurb": "Medicare, Medicaid Long-Term Care, and programs that lower drug and premium costs."
+    },
+    {
+      "id": "food",
+      "name": "Food & Nutrition",
+      "emoji": "🍎",
+      "blurb": "SNAP, senior food boxes, and farmers' market vouchers."
+    },
+    {
+      "id": "housing",
+      "name": "Housing & Energy",
+      "emoji": "🏠",
+      "blurb": "Senior housing, weatherization, energy bill help, and reverse mortgages."
+    },
+    {
+      "id": "services",
+      "name": "Services & Care",
+      "emoji": "🤝",
+      "blurb": "Meals, transportation, caregiver respite, and free Medicare counseling."
+    },
+    {
+      "id": "tax",
+      "name": "Tax Breaks",
+      "emoji": "🧾",
+      "blurb": "Federal credits for older Americans plus phone/internet discounts."
+    }
+  ],
+  "benefits": [
+    {
+      "key": "ss-retirement",
+      "category": "income",
+      "name": "Social Security Retirement",
+      "age_start": 62,
+      "who": "Anyone with 40 quarters (about 10 years) of work credits. Age 62 starts reduced benefits; full retirement age (FRA) is 66–67 depending on birth year; age 70 unlocks the maximum delayed-retirement credit.",
+      "what": "Monthly check based on your highest 35 years of indexed earnings. Average 2026 retired-worker benefit is around $2,000–$2,100/month; max at FRA is $4,018/month, max at 70 is around $5,108/month.",
+      "tips": "Filing at 62 locks in a 25–30% permanent reduction. Each year you wait past FRA up to 70 adds 8% (delayed-retirement credit). Spousal and survivor benefits can be larger than your own — always run both numbers.",
+      "apply": "Create or sign in to your account at ssa.gov/myaccount, then file online at ssa.gov/retirement.",
+      "url": "https://www.ssa.gov/retirement",
+      "agency": "Social Security Administration"
+    },
+    {
+      "key": "ssi",
+      "category": "income",
+      "name": "Supplemental Security Income (SSI)",
+      "age_start": 65,
+      "who": "Age 65+ (or any age if blind/disabled) with very limited income and assets. 2026 resource limits are $2,000 single / $3,000 couple (your home and one car don't count).",
+      "what": "Federal monthly cash payment up to $967/month (single) or $1,450/month (couple) in 2026. Many states add a state supplement on top.",
+      "tips": "SSI is needs-based and separate from Social Security retirement. You can receive both if your retirement benefit is small. Applying for SSI usually triggers automatic Medicaid enrollment in most states.",
+      "apply": "Start at ssa.gov/ssi or call 1-800-772-1213. The full application requires an interview.",
+      "url": "https://www.ssa.gov/ssi",
+      "agency": "Social Security Administration"
+    },
+    {
+      "key": "ssdi",
+      "category": "income",
+      "name": "Social Security Disability (SSDI)",
+      "age_start": 50,
+      "who": "Under FRA, can't work for 12+ months due to a medical condition, and have enough recent work credits. Special rules at 50, 55, and 60 make approval easier (\"grid rules\").",
+      "what": "Monthly benefit equal to your projected Social Security retirement amount. Converts automatically to retirement at FRA. Medicare kicks in 24 months after SSDI starts.",
+      "tips": "If you're 55+ and have a physical impairment that rules out your past work, the Medical-Vocational Guidelines often direct a finding of disabled even without a \"listed\" impairment. Don't give up after a first denial — 70%+ of approvals come on appeal.",
+      "apply": "ssa.gov/disability online, or any local SSA office.",
+      "url": "https://www.ssa.gov/disability",
+      "agency": "Social Security Administration"
+    },
+    {
+      "key": "medicare",
+      "category": "health",
+      "name": "Medicare",
+      "age_start": 65,
+      "who": "Age 65+ (or any age with ALS, ESRD, or 24 months of SSDI). Most people get Part A premium-free; Part B has a standard premium ($185/month in 2026, more with higher income via IRMAA).",
+      "what": "Part A (hospital), Part B (doctor/outpatient), Part D (drugs), plus Part C Medicare Advantage as an alternative bundle. Original Medicare + a Medigap plan + Part D is the most flexible combo; Medicare Advantage is the lowest-premium combo but locks you into a network.",
+      "tips": "Your 7-month Initial Enrollment Period starts 3 months before your 65th birthday month. Missing it triggers permanent late-enrollment penalties. You can also delay if you have credible employer coverage — keep written proof.",
+      "apply": "If you already get Social Security at 65, enrollment in Parts A & B is automatic. Otherwise enroll at medicare.gov or ssa.gov/medicare. Pick a Part D plan and decide on Medigap during open enrollment (the 6-month window starting your Part B effective date offers guaranteed-issue Medigap).",
+      "url": "https://www.medicare.gov",
+      "agency": "Centers for Medicare & Medicaid Services"
+    },
+    {
+      "key": "medicare-savings",
+      "category": "health",
+      "name": "Medicare Savings Programs (MSPs)",
+      "age_start": 65,
+      "who": "Medicare beneficiaries with limited income (typically up to about $1,800–$2,400/month single, more for couples — limits vary by state and program).",
+      "what": "Four programs (QMB, SLMB, QI, QDWI) that pay your Part B premium ($185/month back in your pocket) and — at the QMB level — also wipe out Medicare deductibles, copays, and coinsurance.",
+      "tips": "Many people who qualify never apply. The federal floor is generous; some states (NY, ME, CT, IN) raised limits even higher. Apply through your state Medicaid office, not Social Security.",
+      "apply": "Find your state Medicaid office via medicaid.gov, or use BenefitsCheckUp.org for a screener.",
+      "url": "https://www.medicare.gov/basics/costs/help/medicare-savings-programs",
+      "agency": "Centers for Medicare & Medicaid Services"
+    },
+    {
+      "key": "extra-help",
+      "category": "health",
+      "name": "Extra Help (Part D Low-Income Subsidy)",
+      "age_start": 65,
+      "who": "Medicare beneficiaries earning under about $23,475 single / $31,725 couple (2026, 150% of FPL). Asset limits also apply but are generous.",
+      "what": "Cuts your Medicare Part D premium and deductible to $0 (full subsidy) and caps drug copays at a few dollars per prescription. Worth roughly $5,900/year.",
+      "tips": "Since 2024 there's only one full-subsidy tier (no more partial subsidy). If you qualify for Medicaid, SSI, or an MSP, you get Extra Help automatically.",
+      "apply": "Apply at ssa.gov/extrahelp or call 1-800-772-1213.",
+      "url": "https://www.ssa.gov/medicare/part-d-extra-help",
+      "agency": "Social Security Administration"
+    },
+    {
+      "key": "medicaid-ltc",
+      "category": "health",
+      "name": "Medicaid Long-Term Care",
+      "age_start": 65,
+      "who": "Seniors who need nursing home, assisted-living, or home-care help and meet state income/asset limits (typically $2,000 in countable assets for the applicant; spouse can keep more).",
+      "what": "Pays for nursing home care (covered in every state) plus, in most states, Home and Community-Based Services (HCBS) waivers covering personal care, adult day services, and assisted living.",
+      "tips": "Medicare does NOT cover long-term custodial care. Only Medicaid does. Assets transferred within 5 years can trigger a penalty period — plan early. Spousal-impoverishment protections let the at-home spouse keep up to ~$3,948/month income and ~$157,920 in assets (2026).",
+      "apply": "Apply through your state Medicaid agency. An elder-law attorney is usually worth the fee for cases over $50K in assets.",
+      "url": "https://www.medicaid.gov/medicaid/long-term-services-supports",
+      "agency": "Centers for Medicare & Medicaid Services"
+    },
+    {
+      "key": "pace",
+      "category": "health",
+      "name": "PACE (Program of All-Inclusive Care for the Elderly)",
+      "age_start": 55,
+      "who": "Age 55+, certified as needing nursing-home level of care, but able to live safely at home with PACE support. Must live in a PACE service area.",
+      "what": "One program covers ALL your medical, dental, prescription, day-program, transportation, meals, and home-care needs. Replaces Medicare and Medicaid as your delivery system.",
+      "tips": "PACE has no copays, no premiums for dual-eligibles, and unlimited hospital stays. Keeps people out of nursing homes. Find a PACE site at NPAonline.org.",
+      "apply": "Locate a PACE program near you at npaonline.org/find-a-pace-program.",
+      "url": "https://www.medicare.gov/your-medicare-costs/get-help-paying-costs/pace",
+      "agency": "Centers for Medicare & Medicaid Services"
+    },
+    {
+      "key": "snap",
+      "category": "food",
+      "name": "SNAP (Food Stamps) — Senior Track",
+      "age_start": 60,
+      "who": "Households age 60+ have a simplified application, higher gross income limit (165% FPL in many states), and looser asset rules. Medical expenses above $35/month are deductible.",
+      "what": "EBT card to buy groceries. 2026 max benefit is $292/month for one person, $537/month for a couple. Even a small benefit (\"$23 minimum\") is worth claiming — it triggers eligibility for other programs.",
+      "tips": "If you live alone, can't cook, or have a disability, you can use SNAP at restaurants in the Restaurant Meals Program (live in CA, AZ, RI, MD, IL, MI, NY, VA, KY — expanding). Online grocery purchase via Amazon, Walmart, Aldi works in all 50 states.",
+      "apply": "Apply through your state SNAP office (find at fns.usda.gov/snap/state-directory). BenefitsCheckUp.org has a quick eligibility screen.",
+      "url": "https://www.fns.usda.gov/snap/recipient/eligibility",
+      "agency": "USDA Food and Nutrition Service"
+    },
+    {
+      "key": "csfp",
+      "category": "food",
+      "name": "Commodity Supplemental Food Program (CSFP)",
+      "age_start": 60,
+      "who": "Age 60+ with income under 130% of the Federal Poverty Level (~$1,632/month single, $2,215/month couple in 2026).",
+      "what": "Monthly box of USDA-purchased shelf-stable food (cereal, pasta, canned protein, milk, juice, cheese). Worth about $50/month.",
+      "tips": "Operates in all 50 states + DC + Puerto Rico but distribution sites vary by region. Stacks with SNAP — you can have both.",
+      "apply": "Find a local distributing agency at fns.usda.gov/csfp/applicant.",
+      "url": "https://www.fns.usda.gov/csfp/commodity-supplemental-food-program",
+      "agency": "USDA Food and Nutrition Service"
+    },
+    {
+      "key": "sfmnp",
+      "category": "food",
+      "name": "Senior Farmers' Market Nutrition Program (SFMNP)",
+      "age_start": 60,
+      "who": "Age 60+ with income at or below 185% FPL (~$2,322/month single in 2026).",
+      "what": "Coupons or vouchers (typically $20–$50/year per person) for fresh fruits, vegetables, herbs, and honey from authorized farmers' markets and roadside stands.",
+      "tips": "Funds run out fast — apply in spring. Operates in nearly every state but allocation is limited.",
+      "apply": "Contact your state's Department of Aging or USDA SFMNP page (fns.usda.gov/sfmnp).",
+      "url": "https://www.fns.usda.gov/sfmnp/senior-farmers-market-nutrition-program",
+      "agency": "USDA Food and Nutrition Service"
+    },
+    {
+      "key": "section-202",
+      "category": "housing",
+      "name": "Section 202 Senior Housing",
+      "age_start": 62,
+      "who": "Very-low-income households (50% of area median income or less), at least one member age 62+.",
+      "what": "Subsidized rental units in dedicated senior buildings. Rent is 30% of adjusted income. Buildings include service coordinators who connect residents to local senior services.",
+      "tips": "Every Section 202 property has its own waitlist. Apply to multiple properties at once — don't wait for one. Waits range from 1–3 years in most metros.",
+      "apply": "Find Section 202 properties at hud.gov/topics/rental_assistance/phprog or call HUD at 1-800-955-2232.",
+      "url": "https://www.hud.gov/program_offices/housing/mfh/progdesc/eld202",
+      "agency": "U.S. Department of Housing and Urban Development"
+    },
+    {
+      "key": "hecm",
+      "category": "housing",
+      "name": "HECM Reverse Mortgage",
+      "age_start": 62,
+      "who": "Homeowners age 62+ with significant home equity, primary residence, current on taxes/insurance.",
+      "what": "FHA-insured loan that converts home equity into cash, line of credit, or monthly payments. No mortgage payment due as long as you live in the home. Loan repaid when you sell, move out, or pass away.",
+      "tips": "Required HUD counseling first — take it seriously. Watch for upfront fees (~$15K is common). HECM is a useful tool for staying in your home, but it's expensive money. Consider downsizing or a HELOC first.",
+      "apply": "Find a HUD-approved HECM counselor at hud.gov/i_want_to/talk_to_a_housing_counselor (required by law).",
+      "url": "https://www.hud.gov/program_offices/housing/sfh/hecm/hecmhome",
+      "agency": "U.S. Department of Housing and Urban Development"
+    },
+    {
+      "key": "liheap",
+      "category": "housing",
+      "name": "LIHEAP — Energy Bill Assistance",
+      "age_start": null,
+      "who": "Households at or below 150% FPL (most states); seniors are categorically prioritized in many states.",
+      "what": "Help paying heating and cooling bills, repairing or replacing broken HVAC equipment, and emergency crisis intervention when utilities are about to be shut off.",
+      "tips": "Apply early in the season — funds are first-come, first-served and run out. Most states open applications October/November for heating, May/June for cooling.",
+      "apply": "Find your state LIHEAP office at acf.gov/ocs/programs/liheap or call 1-866-674-6327.",
+      "url": "https://www.acf.gov/ocs/low-income-home-energy-assistance-program-liheap",
+      "agency": "HHS Administration for Children and Families"
+    },
+    {
+      "key": "wap",
+      "category": "housing",
+      "name": "Weatherization Assistance Program (WAP)",
+      "age_start": null,
+      "who": "Income at or below 200% FPL (some states higher); seniors and disabled prioritized.",
+      "what": "Free home energy upgrades — insulation, weather stripping, furnace tune-up or replacement, water heater wrapping. Average household saves $372/year on energy bills.",
+      "tips": "Renters can qualify with landlord permission. Programs are state-administered with federal DOE money — quality varies, but service is free.",
+      "apply": "Find your state WAP office via energy.gov/scep/wap/weatherization-assistance-program.",
+      "url": "https://www.energy.gov/scep/wap/weatherization-assistance-program",
+      "agency": "U.S. Department of Energy"
+    },
+    {
+      "key": "lifeline",
+      "category": "tax",
+      "name": "Lifeline — Phone & Internet Discount",
+      "age_start": null,
+      "who": "Anyone receiving Medicaid, SNAP, SSI, federal public housing, or the Veterans Pension; or income at or below 135% FPL.",
+      "what": "$9.25/month off home or wireless phone or internet (or $34.25/month on Tribal lands). Can apply to either phone or internet, not both.",
+      "tips": "After the federal Affordable Connectivity Program ended in 2024, Lifeline is the main remaining federal connectivity discount. Some carriers (SafeLink, Assurance, Q Link) offer free wireless plans on top.",
+      "apply": "Apply at lifelinesupport.org or call 1-800-234-9473.",
+      "url": "https://www.lifelinesupport.org",
+      "agency": "Federal Communications Commission / USAC"
+    },
+    {
+      "key": "va-pension",
+      "category": "income",
+      "name": "VA Improved Pension & Aid and Attendance",
+      "age_start": 65,
+      "who": "Wartime veterans age 65+ (or permanently disabled) with limited income; also surviving spouses. Aid and Attendance is an enhancement for those who need help with daily activities.",
+      "what": "Monthly tax-free pension. 2026 max with Aid and Attendance is about $2,358/month (single vet), $2,795/month (vet with spouse), $1,515/month (surviving spouse).",
+      "tips": "Wartime service of one day during a recognized period (WWII, Korea, Vietnam, Gulf War on/after Aug 2 1990) qualifies. \"Net worth\" limit is about $159,240 (2026) including assets minus mortgage debt.",
+      "apply": "Apply via va.gov/pension/eligibility or any VA regional office. Free help from accredited Veterans Service Organizations (VFW, American Legion, DAV).",
+      "url": "https://www.va.gov/pension",
+      "agency": "U.S. Department of Veterans Affairs"
+    },
+    {
+      "key": "va-aid",
+      "category": "services",
+      "name": "VA Aid and Attendance — In-Home Care",
+      "age_start": 65,
+      "who": "Veterans (or surviving spouses) receiving VA Pension who need help with bathing, dressing, eating, transferring, or who are bedridden / in assisted living / in a nursing home.",
+      "what": "Adds up to about $912/month for veterans (single), or $586/month for surviving spouses, on top of base VA pension.",
+      "tips": "This is one of the most underused VA benefits. Can pay for assisted living, in-home aides, or family caregivers (in many cases adult children).",
+      "apply": "Submit VA Form 21-2680 along with your pension application via va.gov/pension/aid-attendance-housebound.",
+      "url": "https://www.va.gov/pension/aid-attendance-housebound",
+      "agency": "U.S. Department of Veterans Affairs"
+    },
+    {
+      "key": "ship",
+      "category": "services",
+      "name": "SHIP — Free Medicare Counseling",
+      "age_start": 65,
+      "who": "Anyone with Medicare or about to enroll. No income limit. Counselors are trained, certified, and unbiased — they don't sell anything.",
+      "what": "Free, confidential one-on-one counseling on Medicare enrollment, plan choice, claims, appeals, billing problems, fraud, and Medicare Savings Programs / Extra Help applications.",
+      "tips": "Use SHIP — not a broker, not a TV ad number — for unbiased plan comparison. SHIP counselors will run the Medicare Plan Finder with you.",
+      "apply": "Find your state SHIP via shiphelp.org or call 1-877-839-2675.",
+      "url": "https://www.shiphelp.org",
+      "agency": "Administration for Community Living (ACL)"
+    },
+    {
+      "key": "aaa",
+      "category": "services",
+      "name": "Area Agency on Aging (AAA)",
+      "age_start": 60,
+      "who": "Age 60+, no income limit (some specific services do means-test).",
+      "what": "Local hub for Older Americans Act services: home-delivered meals (Meals on Wheels), congregate meals, transportation, in-home aide hours, caregiver respite, legal aid, ombudsman for nursing homes, and benefits counseling.",
+      "tips": "Every county is covered by exactly one AAA. Start here when you don't know where else to start — they triage and refer.",
+      "apply": "Find your AAA via the federal Eldercare Locator at eldercare.acl.gov or 1-800-677-1116.",
+      "url": "https://eldercare.acl.gov",
+      "agency": "Administration for Community Living (ACL)"
+    },
+    {
+      "key": "credit-elderly",
+      "category": "tax",
+      "name": "Credit for the Elderly or Disabled (Schedule R)",
+      "age_start": 65,
+      "who": "Age 65+ (or under 65 with permanent disability) with very low taxable income (under ~$17,500 single, under ~$25,000 joint, both 65+).",
+      "what": "Federal tax credit of up to $1,125 (single) or $1,500 (joint, both 65+) on Schedule R of Form 1040.",
+      "tips": "Income thresholds are low — most filers don't qualify, but those who do should always claim. Free filing help from IRS VITA / TCE / AARP Tax-Aide programs (find at irs.treasury.gov/freetaxprep).",
+      "apply": "File Schedule R with your federal Form 1040.",
+      "url": "https://www.irs.gov/credits-deductions/individuals/schedule-r",
+      "agency": "Internal Revenue Service"
+    },
+    {
+      "key": "benefits-checkup",
+      "category": "services",
+      "name": "BenefitsCheckUp — Universal Screener",
+      "age_start": 55,
+      "who": "Anyone. No income limit to use the screener.",
+      "what": "National Council on Aging tool that checks eligibility for 2,500+ federal, state, and local programs in one questionnaire — SNAP, MSP, LIHEAP, property tax relief, prescription assistance, and more.",
+      "tips": "Best single starting point if you don't know what you qualify for. Free, no signup required. Results are saved if you create an account.",
+      "apply": "Run the questionnaire at benefitscheckup.org — takes 10–15 minutes.",
+      "url": "https://www.benefitscheckup.org",
+      "agency": "National Council on Aging (nonprofit, federally supported)"
+    }
+  ]
+}

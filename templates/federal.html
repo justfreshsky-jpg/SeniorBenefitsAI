@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Federal benefits for Americans 55+ — Senior Benefits AI{% endblock %}
+{% block description %}Every major federal program for older Americans: Social Security, Medicare, Medicaid LTC, SSI, SNAP, LIHEAP, Section 202, VA pension, SHIP, and more — with the official .gov link to apply.{% endblock %}
+
+{% block hero %}
+<header class="hero">
+  <h1>Federal benefits for Americans 55+</h1>
+  <p>Every major federal program organized by what it helps with. Each one links straight to the .gov agency that runs it.</p>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="crumb"><a href="/">Home</a> &raquo; Federal benefits</div>
+
+{% for cat in categories %}
+<div class="card">
+  <h2>{{ cat.emoji }} {{ cat.name }}</h2>
+  <p style="color:var(--muted);margin:0 0 16px;">{{ cat.blurb }}</p>
+  {% for b in benefits_by_cat[cat.id] %}
+  <a class="ben-card" href="/federal/{{ b.key }}">
+    <div class="name">{{ b.name }} {% if b.age_start %}<span class="pill">{{ b.age_start }}+</span>{% else %}<span class="pill muted">Any age</span>{% endif %}</div>
+    <div class="who">{{ b.who }}</div>
+  </a>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+  <h3 style="margin-top:0;">Want this matched to your specific situation?</h3>
+  <p style="margin:0;">The <a href="/">personalized checklist</a> on the home page takes 1 minute and will tell you which programs to pursue first based on your age, state, income, and situation.</p>
+</div>
+{% endblock %}

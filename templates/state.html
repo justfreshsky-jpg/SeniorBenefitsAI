@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block title %}Senior benefits in {{ state.name }} — Senior Benefits AI{% endblock %}
+{% block description %}State-specific benefits for older Americans in {{ state.name }} — pharmacy assistance, property tax relief, Medicaid Long-Term Care, plus the federal programs that work in every state.{% endblock %}
+
+{% block hero %}
+<header class="hero">
+  <h1>Senior benefits in {{ state.name }}</h1>
+  <p>{{ state.name }}'s state-specific senior programs, plus how the major federal programs work where you live.</p>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="crumb"><a href="/">Home</a> &raquo; {{ state.name }}</div>
+
+<div class="card">
+  <h2>{{ state.name }} state programs</h2>
+
+  <h3>Department of Aging</h3>
+  <p>Your state's official aging-services agency is the right starting point for in-state programs and referrals.</p>
+  <p><a href="{{ state.dept_aging.url }}" target="_blank" rel="noopener"><strong>{{ state.dept_aging.name }} →</strong></a></p>
+
+  <h3>Property tax relief</h3>
+  <p><strong>{{ state.property_tax.name }}.</strong> {{ state.property_tax.blurb }}</p>
+  <p><a href="{{ state.property_tax.url }}" target="_blank" rel="noopener">Read program details and apply →</a></p>
+
+  {% if state.spap %}
+  <h3>State pharmacy assistance</h3>
+  <p>{{ state.name }} runs <strong>{{ state.spap.name }}</strong> on top of Medicare Part D. If you're on Medicare and your drugs cost a lot, this is worth checking.</p>
+  <p><a href="{{ state.spap.url }}" target="_blank" rel="noopener">{{ state.spap.name }} details →</a></p>
+  {% endif %}
+
+  <h3>Medicaid Long-Term Care</h3>
+  <p>For nursing home, assisted living, and in-home care help if income and assets are limited.</p>
+  <p><a href="{{ state.medicaid_ltc }}" target="_blank" rel="noopener">{{ state.name }} Medicaid LTC information →</a></p>
+
+  {% if state.highlights %}
+  <h3>Standout {{ state.name }} programs</h3>
+  <ul>
+    {% for h in state.highlights %}<li>{{ h }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h2>Federal programs (work in every state)</h2>
+  <p style="color:var(--muted);margin-bottom:14px;">These federal programs apply everywhere — but you apply through {{ state.name }}'s agencies for many of them.</p>
+  {% for b in federal_benefits %}
+  <a class="ben-card" href="/federal/{{ b.key }}">
+    <div class="name">{{ b.name }} {% if b.age_start %}<span class="pill">{{ b.age_start }}+</span>{% else %}<span class="pill muted">Any age</span>{% endif %}</div>
+    <div class="who">{{ b.who }}</div>
+  </a>
+  {% endfor %}
+</div>
+
+<div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+  <h3 style="margin-top:0;">Want a personalized checklist for {{ state.name }}?</h3>
+  <p>The <a href="/">checklist tool on the home page</a> matches your age, income, and situation against {{ state.name }}'s programs and the federal ones, and tells you which to pursue first.</p>
+</div>
+
+<div class="card">
+  <h3>Pick a different state</h3>
+  <div class="state-grid">
+    {% for s in states %}{% if s.code != code %}<a href="/state/{{ s.code }}">{{ s.name }}</a>{% endif %}{% endfor %}
+  </div>
+</div>
+{% endblock %}

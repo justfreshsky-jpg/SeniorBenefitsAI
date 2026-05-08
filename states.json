@@ -1,0 +1,410 @@
+{
+  "AL": {
+    "name": "Alabama",
+    "dept_aging": {"name": "Alabama Department of Senior Services", "url": "https://alabamaageline.gov"},
+    "medicaid_ltc": "https://medicaid.alabama.gov/content/4.0_Programs/4.2_Elderly_Disabled.aspx",
+    "spap": null,
+    "property_tax": {"name": "Homestead Exemption (age 65+)", "blurb": "Total exemption from state property tax at age 65+ regardless of income; counties offer additional exemptions tied to income.", "url": "https://www.revenue.alabama.gov/property-tax/homestead-exemptions/"},
+    "highlights": ["Total state property tax exemption at 65+ (no income limit).", "ALABAMA Cares caregiver respite via 13 regional AAAs.", "SenioRx free/low-cost prescription help."]
+  },
+  "AK": {
+    "name": "Alaska",
+    "dept_aging": {"name": "Alaska Division of Senior and Disabilities Services", "url": "https://health.alaska.gov/dsds"},
+    "medicaid_ltc": "https://health.alaska.gov/dsds/Pages/medicaid/default.aspx",
+    "spap": {"name": "SeniorCare Drug Program", "url": "https://health.alaska.gov/dsds/Pages/seniorbenefits.aspx"},
+    "property_tax": {"name": "Senior/Disabled Property Tax Exemption", "blurb": "$150,000 of assessed value exempt for owners 65+. Many municipalities exempt the entire residence.", "url": "https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor.aspx"},
+    "highlights": ["Alaska Senior Benefits cash assistance ($76–$250/month).", "Permanent Fund Dividend (PFD) — annual statewide dividend regardless of age.", "Choice Waiver provides home-care alternative to nursing home."]
+  },
+  "AZ": {
+    "name": "Arizona",
+    "dept_aging": {"name": "Arizona Department of Economic Security — Aging & Adult Services", "url": "https://des.az.gov/services/aging-and-adult"},
+    "medicaid_ltc": "https://www.azahcccs.gov/Members/AlreadyCovered/ALTCS/",
+    "spap": {"name": "CoppeRx Card", "url": "https://copperxcard.az.gov"},
+    "property_tax": {"name": "Senior Property Valuation Protection (\"Senior Freeze\")", "blurb": "Freezes assessed value for owners 65+ with income under $46,416 single / $58,020 couple (2026 limits, county-adjusted).", "url": "https://azdor.gov/forms/property-forms/senior-property-valuation-protection-application"},
+    "highlights": ["ALTCS = Arizona's Medicaid LTC — pays for nursing home, assisted living, and in-home care.", "Senior Property Valuation Protection freezes assessment.", "AZ SHIP through DES Aging & Adult Services."]
+  },
+  "AR": {
+    "name": "Arkansas",
+    "dept_aging": {"name": "Arkansas Division of Aging, Adult, and Behavioral Health Services", "url": "https://humanservices.arkansas.gov/about-dhs/daabhs"},
+    "medicaid_ltc": "https://humanservices.arkansas.gov/divisions-shared-services/medical-services/eligibility/long-term-services-and-supports/",
+    "spap": null,
+    "property_tax": {"name": "Homestead Property Tax Credit + Senior Freeze", "blurb": "All homeowners get $425 credit; 65+ also lock in assessed value (\"frozen value\") regardless of future market increases.", "url": "https://www.dfa.arkansas.gov/property-tax-administration"},
+    "highlights": ["ARChoices Medicaid waiver covers home & community-based services.", "Senior assessed-value freeze at 65 — major benefit.", "8 AAA regions cover all 75 counties."]
+  },
+  "CA": {
+    "name": "California",
+    "dept_aging": {"name": "California Department of Aging", "url": "https://aging.ca.gov"},
+    "medicaid_ltc": "https://www.dhcs.ca.gov/services/ltc/Pages/default.aspx",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Postponement (PTP) + Prop 19 base-year transfer", "blurb": "PTP defers property tax for owners 62+ with under $51,762 income (state pays, lien on property). Prop 19 lets owners 55+ transfer their original tax base when they sell and buy a new primary home in CA.", "url": "https://www.sco.ca.gov/ardtax_prop_tax_postponement.html"},
+    "highlights": ["Medi-Cal LTC has the most generous spousal-impoverishment rules.", "IHSS (In-Home Supportive Services) pays family members to provide care.", "PACE programs in 30+ counties — most in the country.", "CalFresh has expanded SSI/SSP integration."]
+  },
+  "CO": {
+    "name": "Colorado",
+    "dept_aging": {"name": "Colorado Division of Aging and Adult Services", "url": "https://cdhs.colorado.gov/our-services/older-adult-services"},
+    "medicaid_ltc": "https://hcpf.colorado.gov/long-term-services-and-supports",
+    "spap": null,
+    "property_tax": {"name": "Senior Homestead Property Tax Exemption", "blurb": "50% exemption on first $200,000 of home value for owners 65+ who've owned the home 10+ years. Funding capped — apply early in the year.", "url": "https://cdola.colorado.gov/property-taxation"},
+    "highlights": ["Old Age Pension (OAP) — state cash supplement for seniors with very low income.", "Colorado PEAK portal screens for Medicaid + SNAP + LIHEAP in one application.", "Senior homestead exemption (50% of first $200K)."]
+  },
+  "CT": {
+    "name": "Connecticut",
+    "dept_aging": {"name": "Connecticut Department of Aging and Disability Services", "url": "https://portal.ct.gov/AgingandDisability"},
+    "medicaid_ltc": "https://portal.ct.gov/dss/health-and-home-care/medicaid",
+    "spap": {"name": "ConnPACE", "url": "https://portal.ct.gov/dss/health-and-home-care/connpace"},
+    "property_tax": {"name": "Circuit Breaker + Local Option Senior Freeze", "blurb": "State Circuit Breaker gives up to $1,250 property tax credit for income-eligible owners 65+. Many towns add local senior freezes on top.", "url": "https://portal.ct.gov/OPM/IGPP-Main/Renters-Tax-Relief"},
+    "highlights": ["CT generous Medicare Savings Program limits — among the highest in the country.", "ConnPACE drug assistance + integration with Extra Help.", "CHCPE (CT Home Care Program for Elders) waiver."]
+  },
+  "DE": {
+    "name": "Delaware",
+    "dept_aging": {"name": "Delaware Division of Services for Aging and Adults with Physical Disabilities", "url": "https://dhss.delaware.gov/dsaapd/"},
+    "medicaid_ltc": "https://dhss.delaware.gov/dhss/dmma/ltc.html",
+    "spap": {"name": "Delaware Prescription Assistance Program (DPAP)", "url": "https://dhss.delaware.gov/dhss/dmma/dpap.html"},
+    "property_tax": {"name": "Senior School Property Tax Credit", "blurb": "Up to $500 credit on school property taxes for residents 65+; recently restored to pre-2017 levels.", "url": "https://finance.delaware.gov/finance-divisions/division-of-revenue/senior-school-property-tax-relief"},
+    "highlights": ["DPAP fills Medicare Part D coverage gaps with up to $3,000/year.", "Senior school property tax credit ($500).", "Diamond State Health Plan-Plus integrates LTSS with managed care."]
+  },
+  "FL": {
+    "name": "Florida",
+    "dept_aging": {"name": "Florida Department of Elder Affairs", "url": "https://elderaffairs.org"},
+    "medicaid_ltc": "https://ahca.myflorida.com/medicaid/long-term-care",
+    "spap": null,
+    "property_tax": {"name": "Senior Homestead Exemption (additional $50K)", "blurb": "Homestead exemption already exempts $50K. Counties may add an extra $50K exemption for owners 65+ with household income under ~$36,614 (2026, indexed annually). Some long-term residents (25+ years) get full exemption.", "url": "https://floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx"},
+    "highlights": ["No state income tax (relevant for retirees living on Social Security + pension).", "SMMC Long-Term Care managed care — single point of contact for LTSS.", "Aging and Disability Resource Centers (ADRCs) in every county for triage."]
+  },
+  "GA": {
+    "name": "Georgia",
+    "dept_aging": {"name": "Georgia Division of Aging Services", "url": "https://aging.georgia.gov"},
+    "medicaid_ltc": "https://medicaid.georgia.gov/programs/all-programs/elderly-and-disabled-waiver-program-edwp",
+    "spap": null,
+    "property_tax": {"name": "School Property Tax Exemption (Age 62+)", "blurb": "Statewide school tax exemption for owners 62+ with income under $10K (state law). Many counties (Fulton, DeKalb, Cobb, Gwinnett) offer their own much more generous senior school tax exemptions — full exemption common at 65+.", "url": "https://dor.georgia.gov/property-tax-homestead-exemptions"},
+    "highlights": ["Generous county-level school tax exemptions for seniors (varies — check your county tax assessor).", "Elderly & Disabled Waiver Program (EDWP) — Medicaid HCBS.", "GeorgiaCares = state SHIP."]
+  },
+  "HI": {
+    "name": "Hawaii",
+    "dept_aging": {"name": "Hawaii Executive Office on Aging", "url": "https://health.hawaii.gov/eoa/"},
+    "medicaid_ltc": "https://medquest.hawaii.gov/en/members-applicants/longterm-care.html",
+    "spap": null,
+    "property_tax": {"name": "Multiple Home Exemption (Age-Tiered)", "blurb": "Owner-occupant exemption tiered by age: standard amount under 60, larger at 60–69, larger still at 70+. Set by each county (Honolulu most generous).", "url": "https://www.realpropertyhonolulu.com/exemptions/"},
+    "highlights": ["Kupuna Care — state-funded services for 60+ regardless of Medicaid eligibility.", "Going Home Plus waiver helps people move from nursing homes back to community.", "Sage PLUS = state SHIP."]
+  },
+  "ID": {
+    "name": "Idaho",
+    "dept_aging": {"name": "Idaho Commission on Aging", "url": "https://aging.idaho.gov"},
+    "medicaid_ltc": "https://healthandwelfare.idaho.gov/services-programs/medicaid-health/long-term-care",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Reduction (\"Circuit Breaker\")", "blurb": "Reduces property tax up to $1,500 for owners 65+ (or widowed/disabled) with income under ~$37,000.", "url": "https://tax.idaho.gov/taxes/property/homeowners/property-tax-reduction-program/"},
+    "highlights": ["Property Tax Reduction up to $1,500 (Circuit Breaker).", "Aged & Disabled (A&D) Waiver covers HCBS.", "Senior Health Insurance Benefits Advisors (SHIBA) = state SHIP."]
+  },
+  "IL": {
+    "name": "Illinois",
+    "dept_aging": {"name": "Illinois Department on Aging", "url": "https://ilaging.illinois.gov"},
+    "medicaid_ltc": "https://www2.illinois.gov/hfs/MedicalPrograms/seniors/Pages/default.aspx",
+    "spap": {"name": "Illinois Rx Buying Club + Pharmaceutical Assistance", "url": "https://ilaging.illinois.gov/programs/financial-assistance.html"},
+    "property_tax": {"name": "Senior Citizen Homestead Exemption + Senior Freeze", "blurb": "Senior Homestead Exemption ($8,000 off equalized assessed value at 65+). Senior Freeze (Senior Citizens Assessment Freeze) locks in assessed value for those 65+ with income under $65,000.", "url": "https://tax.illinois.gov/research/publications/pio/pio16.html"},
+    "highlights": ["Senior Citizens Assessment Freeze — locks property tax base.", "Community Care Program (CCP) = Illinois HCBS.", "Aging well into the Older Americans Act framework — strong AAA system."]
+  },
+  "IN": {
+    "name": "Indiana",
+    "dept_aging": {"name": "Indiana Division of Aging", "url": "https://www.in.gov/fssa/da/"},
+    "medicaid_ltc": "https://www.in.gov/medicaid/members/programs/long-term-care/",
+    "spap": {"name": "HoosierRx", "url": "https://www.in.gov/fssa/da/3478.htm"},
+    "property_tax": {"name": "Over-65 Deduction + Circuit Breaker Cap", "blurb": "$14,000 deduction off assessed value at 65+ with income under $30,000 single / $40,000 combined. Owners 65+ also have property tax capped at 2% of assessed value (vs. 1% standard cap).", "url": "https://www.in.gov/dlgf/8419.htm"},
+    "highlights": ["HoosierRx supplements Medicare Part D up to $1,000/year.", "Indiana CHOICE waiver for HCBS.", "65+ property tax cap of 2% (Circuit Breaker)."]
+  },
+  "IA": {
+    "name": "Iowa",
+    "dept_aging": {"name": "Iowa Department of Health and Human Services — Aging", "url": "https://hhs.iowa.gov/programs/aging"},
+    "medicaid_ltc": "https://hhs.iowa.gov/medicaid/members/programs-services",
+    "spap": null,
+    "property_tax": {"name": "Disabled and Senior Citizen Property Tax Credit", "blurb": "Sliding-scale credit for owners 65+ with household income under ~$25,000.", "url": "https://tax.iowa.gov/property-tax-credits-and-exemptions"},
+    "highlights": ["Elderly Waiver — HCBS for Iowa Medicaid.", "Iowa SHIIP = state SHIP.", "LIFE program (Living Independently for Elders) = state version of PACE in some areas."]
+  },
+  "KS": {
+    "name": "Kansas",
+    "dept_aging": {"name": "Kansas Department for Aging and Disability Services", "url": "https://www.kdads.ks.gov"},
+    "medicaid_ltc": "https://www.kancare.ks.gov/consumers/services-for-consumers/long-term-services-and-supports",
+    "spap": {"name": "SeniorCare", "url": "https://www.kdads.ks.gov/commissions/commission-on-aging/programs"},
+    "property_tax": {"name": "Homestead Refund + Senior \"SAFESR\"", "blurb": "Homestead Refund up to $700 for income-eligible. SAFESR (Senior or Disabled Veterans) refunds 75% of property tax for owners 65+ with income under $23,700.", "url": "https://www.ksrevenue.gov/perstaxtypeshs.html"},
+    "highlights": ["SAFESR refunds 75% of property tax for income-eligible 65+.", "Frail Elderly (FE) Medicaid waiver = HCBS.", "Senior Health Insurance Counseling for Kansas (SHICK) = state SHIP."]
+  },
+  "KY": {
+    "name": "Kentucky",
+    "dept_aging": {"name": "Kentucky Department for Aging and Independent Living", "url": "https://www.chfs.ky.gov/agencies/dail/"},
+    "medicaid_ltc": "https://www.chfs.ky.gov/agencies/dms/dca/Pages/longterm.aspx",
+    "spap": null,
+    "property_tax": {"name": "Homestead Exemption (Age 65+)", "blurb": "Reduces taxable value by ~$49,100 (indexed every 2 years) for owners 65+ regardless of income.", "url": "https://revenue.ky.gov/Property/Property-Exemptions/Pages/Homestead-Exemption.aspx"},
+    "highlights": ["Homestead exemption regardless of income at 65+.", "Home and Community Based (HCB) waiver.", "State Health Insurance Assistance Program (SHIP) via DAIL."]
+  },
+  "LA": {
+    "name": "Louisiana",
+    "dept_aging": {"name": "Louisiana Governor's Office of Elderly Affairs", "url": "https://goea.la.gov"},
+    "medicaid_ltc": "https://ldh.la.gov/page/medicaid-elderly-disabled-services",
+    "spap": null,
+    "property_tax": {"name": "Senior Special Assessment Level (\"Freeze\")", "blurb": "Freezes assessed value for owners 65+ with income under ~$100K.", "url": "https://www.latax.state.la.us/Menu_Forms/Forms.aspx"},
+    "highlights": ["Senior assessment freeze with very generous income limit.", "Community Choices Waiver = HCBS.", "Senior Health Insurance Information Program (SHIIP) = state SHIP."]
+  },
+  "ME": {
+    "name": "Maine",
+    "dept_aging": {"name": "Maine Office of Aging and Disability Services", "url": "https://www.maine.gov/dhhs/oads"},
+    "medicaid_ltc": "https://www.maine.gov/dhhs/ofi/programs-services/medicaid-mainecare",
+    "spap": {"name": "Drugs for the Elderly and Disabled (DEL)", "url": "https://www.maine.gov/dhhs/oads/about/drugs-elderly-disabled"},
+    "property_tax": {"name": "Property Tax Stabilization for Senior Citizens (eligible filers)", "blurb": "Owners 65+ can stabilize (freeze) property tax at the prior-year amount; must be applied for annually. 2024 reform tightened income limits.", "url": "https://www.maine.gov/revenue/taxes/property-tax/stabilization-program"},
+    "highlights": ["Property tax stabilization for 65+.", "Most generous Medicare Savings Program limits in the country.", "MaineCare HCBS waivers (Section 19 / 21)."]
+  },
+  "MD": {
+    "name": "Maryland",
+    "dept_aging": {"name": "Maryland Department of Aging", "url": "https://aging.maryland.gov"},
+    "medicaid_ltc": "https://health.maryland.gov/mmcp/longtermcare/Pages/home.aspx",
+    "spap": {"name": "Maryland Senior Prescription Drug Assistance Program (SPDAP)", "url": "https://aging.maryland.gov/Pages/spdap.aspx"},
+    "property_tax": {"name": "Homeowners' Property Tax Credit + Senior Tax Credit", "blurb": "Statewide Homeowners' Property Tax Credit caps tax based on income. Many counties (Baltimore, Howard, Montgomery, Prince George's) offer additional senior credits.", "url": "https://dat.maryland.gov/realproperty/Pages/Homeowners%27-Property-Tax-Credit-Program.aspx"},
+    "highlights": ["SPDAP supplements Medicare Part D.", "Community Options Waiver = HCBS.", "Senior Care Subsidy program covers in-home services for 65+ not on Medicaid."]
+  },
+  "MA": {
+    "name": "Massachusetts",
+    "dept_aging": {"name": "Massachusetts Executive Office of Elder Affairs", "url": "https://www.mass.gov/orgs/executive-office-of-elder-affairs"},
+    "medicaid_ltc": "https://www.mass.gov/masshealth-long-term-services-and-supports-coverage",
+    "spap": {"name": "Prescription Advantage", "url": "https://www.mass.gov/prescription-advantage"},
+    "property_tax": {"name": "Senior Circuit Breaker Tax Credit + Clause 41C Exemption", "blurb": "State Circuit Breaker refundable income-tax credit (up to $2,730) for renters and homeowners 65+ paying high property taxes/rent. Cities/towns can adopt local senior exemptions.", "url": "https://www.mass.gov/info-details/senior-circuit-breaker-tax-credit"},
+    "highlights": ["Senior Circuit Breaker — up to $2,730 refundable income-tax credit.", "Frail Elder Waiver = HCBS.", "Strong PACE network."]
+  },
+  "MI": {
+    "name": "Michigan",
+    "dept_aging": {"name": "Michigan Aging and Adult Services Agency", "url": "https://www.michigan.gov/aasa"},
+    "medicaid_ltc": "https://www.michigan.gov/mdhhs/assistance-programs/medicaid",
+    "spap": {"name": "MiRx Card", "url": "https://www.michigan.gov/mirxcard"},
+    "property_tax": {"name": "Homestead Property Tax Credit + Principal Residence Exemption", "blurb": "Homestead Property Tax Credit (up to $1,800) for income-eligible homeowners and renters; senior-tier amount higher than non-senior. Principal Residence Exemption removes school operating millage.", "url": "https://www.michigan.gov/taxes/property"},
+    "highlights": ["MI Choice Waiver — HCBS that includes assisted living.", "MMAP (Michigan Medicare/Medicaid Assistance Program) = state SHIP.", "Homestead Property Tax Credit up to $1,800."]
+  },
+  "MN": {
+    "name": "Minnesota",
+    "dept_aging": {"name": "Minnesota Board on Aging", "url": "https://mn.gov/board-on-aging/"},
+    "medicaid_ltc": "https://mn.gov/dhs/people-we-serve/seniors/health-care/long-term-care/",
+    "spap": null,
+    "property_tax": {"name": "Senior Citizens Property Tax Deferral + Property Tax Refund", "blurb": "Property Tax Deferral lets seniors 65+ defer tax above 3% of household income (state pays, lien). Property Tax Refund (Circuit Breaker) is sliding-scale by income.", "url": "https://www.revenue.state.mn.us/property-tax-refund"},
+    "highlights": ["Property Tax Deferral keeps you in your home with capped out-of-pocket.", "Elderly Waiver — HCBS.", "Minnesota Senior Health Options (MSHO) integrates Medicare + Medicaid for dual-eligibles."]
+  },
+  "MS": {
+    "name": "Mississippi",
+    "dept_aging": {"name": "Mississippi Division of Aging and Adult Services", "url": "https://www.mdhs.ms.gov/adults-seniors/"},
+    "medicaid_ltc": "https://medicaid.ms.gov/medicaid-coverage/who-qualifies-for-coverage/long-term-care/",
+    "spap": null,
+    "property_tax": {"name": "Homestead Exemption (Age 65+ / Disabled)", "blurb": "Owners 65+ exempt from up to $7,500 of assessed value (about $75K market value) — total exemption from county and school millage on that portion.", "url": "https://www.dor.ms.gov/property/regular-and-additional-homestead-exemption"},
+    "highlights": ["Homestead exemption for 65+ (no income test).", "Independent Living (IL) Waiver = HCBS.", "Mississippi Insurance Department SHIP."]
+  },
+  "MO": {
+    "name": "Missouri",
+    "dept_aging": {"name": "Missouri Department of Health and Senior Services", "url": "https://health.mo.gov/seniors/"},
+    "medicaid_ltc": "https://dss.mo.gov/mhd/participants/pages/longtermcare.htm",
+    "spap": null,
+    "property_tax": {"name": "Senior Citizen Property Tax Credit (\"Circuit Breaker\") + County Senior Freeze", "blurb": "Statewide \"Circuit Breaker\" gives up to $750 credit (renters) or $1,100 (owners) at 65+. SB 190 (effective 2024) authorized counties to freeze senior property tax — adoption is county-by-county.", "url": "https://dor.mo.gov/personal/ptc/"},
+    "highlights": ["County senior freeze rolling out statewide post-SB 190 — check your county.", "Circuit Breaker Property Tax Credit up to $1,100.", "MO Choices for Independence (CFI) waiver."]
+  },
+  "MT": {
+    "name": "Montana",
+    "dept_aging": {"name": "Montana Senior and Long-Term Care Division", "url": "https://dphhs.mt.gov/sltc"},
+    "medicaid_ltc": "https://dphhs.mt.gov/sltc/medicaid",
+    "spap": {"name": "Big Sky Rx Program", "url": "https://dphhs.mt.gov/sltc/aging/bigskyrx"},
+    "property_tax": {"name": "Property Tax Assistance + Elderly Homeowner Credit", "blurb": "Property Tax Assistance reduces tax for owners with income under $25,750 (single) / $34,250 (joint). Elderly Homeowner/Renter Credit is a separate refundable income-tax credit up to $1,150 at 62+.", "url": "https://mtrevenue.gov/property/property-tax-assistance/"},
+    "highlights": ["Big Sky Rx pays Medicare Part D premium for income-eligible.", "Elderly Homeowner/Renter Credit up to $1,150.", "Big Sky Waiver = HCBS."]
+  },
+  "NE": {
+    "name": "Nebraska",
+    "dept_aging": {"name": "Nebraska State Unit on Aging", "url": "https://dhhs.ne.gov/Pages/State-Unit-On-Aging.aspx"},
+    "medicaid_ltc": "https://dhhs.ne.gov/Pages/Medicaid-Long-Term-Care.aspx",
+    "spap": null,
+    "property_tax": {"name": "Homestead Exemption", "blurb": "Owners 65+ (or disabled) exempt from a portion of assessed value, sliding scale by income. 2026 income cap around $46,800 (single).", "url": "https://revenue.nebraska.gov/PAD/homestead-exemption"},
+    "highlights": ["Homestead exemption sliding-scale by income.", "Aged & Disabled Waiver — HCBS.", "Nebraska SHIP through SUA."]
+  },
+  "NV": {
+    "name": "Nevada",
+    "dept_aging": {"name": "Nevada Aging and Disability Services Division", "url": "https://adsd.nv.gov"},
+    "medicaid_ltc": "https://dhcfp.nv.gov/Pgms/CPT/LTSS/",
+    "spap": {"name": "Senior Rx + Disability Rx", "url": "https://adsd.nv.gov/Programs/Seniors/SrRx/SrRx_Prog/"},
+    "property_tax": {"name": "Senior Property Tax Rebate (limited)", "blurb": "Nevada has no statewide senior freeze. Renters 62+ with very low income may qualify for the Senior Citizens' Property Tax Assistance / Rental Rebate program (funding-dependent).", "url": "https://aging.nv.gov"},
+    "highlights": ["Senior Rx + Disability Rx programs supplement Medicare Part D.", "No state income tax (relevant for retirees).", "HCBW (Home and Community-Based Waiver) for Frail Elderly."]
+  },
+  "NH": {
+    "name": "New Hampshire",
+    "dept_aging": {"name": "New Hampshire Bureau of Elderly and Adult Services", "url": "https://www.dhhs.nh.gov/programs-services/adult-aging-care"},
+    "medicaid_ltc": "https://www.dhhs.nh.gov/programs-services/adult-aging-care/elderly-and-adult-services",
+    "spap": null,
+    "property_tax": {"name": "Elderly Property Tax Exemption", "blurb": "State law authorizes towns to grant elderly exemption — amount varies by town, tiered by age band (65–74, 75–79, 80+).", "url": "https://www.revenue.nh.gov/property/elderly-exemption.htm"},
+    "highlights": ["Town-by-town elderly exemption — check your town's tax assessor.", "Choices for Independence (CFI) waiver — HCBS.", "ServiceLink Aging and Disability Resource Center in every county."]
+  },
+  "NJ": {
+    "name": "New Jersey",
+    "dept_aging": {"name": "New Jersey Division of Aging Services", "url": "https://www.nj.gov/humanservices/doas/"},
+    "medicaid_ltc": "https://www.state.nj.us/humanservices/dmahs/clients/medicaid/mltss/",
+    "spap": {"name": "PAAD + Senior Gold", "url": "https://www.nj.gov/humanservices/doas/services/paad/"},
+    "property_tax": {"name": "Senior Freeze (Property Tax Reimbursement) + ANCHOR + Stay NJ", "blurb": "Senior Freeze reimburses property tax increases for owners 65+ with income under ~$170K (2026, indexed). ANCHOR adds a separate property tax rebate. Stay NJ (rolling out 2026) caps senior property tax at 50% of bill.", "url": "https://www.nj.gov/treasury/taxation/ptr/"},
+    "highlights": ["Stay NJ caps senior property tax at 50% (rolling out 2026).", "PAAD + Senior Gold supplement Medicare Part D substantially.", "MLTSS — managed long-term services and supports."]
+  },
+  "NM": {
+    "name": "New Mexico",
+    "dept_aging": {"name": "New Mexico Aging and Long-Term Services Department", "url": "https://www.nmaging.state.nm.us"},
+    "medicaid_ltc": "https://www.hsd.state.nm.us/lookingforinformation/long-term-care-services/",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Limitation (Valuation Freeze) for Seniors", "blurb": "Owners 65+ with income under $42,900 (2026) can freeze valuation. Plus a low-income property tax rebate for those 65+ with income under $16K.", "url": "https://www.tax.newmexico.gov/individuals/elderly-property-tax-relief/"},
+    "highlights": ["Valuation freeze at 65+ with income test.", "Centennial Care 2.0 — managed Medicaid LTSS.", "BenefitsCal-style central application via YESNM portal."]
+  },
+  "NY": {
+    "name": "New York",
+    "dept_aging": {"name": "New York State Office for the Aging", "url": "https://aging.ny.gov"},
+    "medicaid_ltc": "https://www.health.ny.gov/health_care/medicaid/program/longterm/",
+    "spap": {"name": "EPIC (Elderly Pharmaceutical Insurance Coverage)", "url": "https://www.health.ny.gov/health_care/epic/"},
+    "property_tax": {"name": "Enhanced STAR + Senior Citizens Exemption", "blurb": "Enhanced STAR exempts ~$84,000 of assessed value from school taxes for owners 65+ with income under ~$107K (2026). Local Senior Citizens Exemption (\"RP-467\") reduces 50% of value for income under ~$58,400 — county adopted.", "url": "https://www.tax.ny.gov/pit/property/star/index.htm"},
+    "highlights": ["EPIC supplements Medicare Part D very generously.", "Most generous Medicare Savings Program limits with NYS.", "Managed Long Term Care (MLTC) statewide.", "Enhanced STAR — major school tax break."]
+  },
+  "NC": {
+    "name": "North Carolina",
+    "dept_aging": {"name": "NC Division of Aging and Adult Services", "url": "https://www.ncdhhs.gov/divisions/aging-and-adult-services"},
+    "medicaid_ltc": "https://medicaid.ncdhhs.gov/long-term-care/services-supports",
+    "spap": null,
+    "property_tax": {"name": "Elderly or Disabled Homestead Exclusion + Circuit Breaker", "blurb": "Elderly Homestead Exclusion exempts $25,000 or 50% of value (whichever greater) for owners 65+ with income under $37,900 (2026). Circuit Breaker caps tax at 4–5% of income for 65+ with income under $56,850.", "url": "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-relief"},
+    "highlights": ["Choice of Homestead Exclusion or Circuit Breaker — pick whichever's better.", "CAP/DA waiver — HCBS.", "Senior Health Insurance Information Program (SHIIP) = state SHIP."]
+  },
+  "ND": {
+    "name": "North Dakota",
+    "dept_aging": {"name": "North Dakota Aging Services Division", "url": "https://www.hhs.nd.gov/aging"},
+    "medicaid_ltc": "https://www.hhs.nd.gov/aging/long-term-care",
+    "spap": null,
+    "property_tax": {"name": "Homestead Property Tax Credit", "blurb": "Owners 65+ with income under $42,000 get sliding-scale exemption; up to 100% reduction for the lowest income tier.", "url": "https://www.tax.nd.gov/business/property-tax/credits-and-exemptions"},
+    "highlights": ["Homestead Credit can wipe out 100% of property tax for low-income 65+.", "Service Payments for Elderly and Disabled (SPED) — state-funded HCBS.", "Aging Services Division SHIP."]
+  },
+  "OH": {
+    "name": "Ohio",
+    "dept_aging": {"name": "Ohio Department of Aging", "url": "https://aging.ohio.gov"},
+    "medicaid_ltc": "https://medicaid.ohio.gov/families-and-individuals/programs/long-term-care",
+    "spap": {"name": "Best Rx Card", "url": "https://aging.ohio.gov/wps/portal/gov/aging/care-and-living/get-help/golden-buckeye-card"},
+    "property_tax": {"name": "Homestead Exemption (Age 65+)", "blurb": "Reduces taxable value by $26,200 for owners 65+ with income under $39,800 (2026). Disabled veterans get larger exemption regardless of income.", "url": "https://tax.ohio.gov/individual/resources/homestead-exemption"},
+    "highlights": ["PASSPORT waiver — HCBS, very large enrollment.", "Homestead exemption for 65+ (income tested).", "Ohio Senior Health Insurance Information Program (OSHIIP)."]
+  },
+  "OK": {
+    "name": "Oklahoma",
+    "dept_aging": {"name": "Oklahoma Human Services — Aging Services", "url": "https://oklahoma.gov/okdhs/services/aging.html"},
+    "medicaid_ltc": "https://oklahoma.gov/ohca/individuals/programs/medicaid-services.html",
+    "spap": null,
+    "property_tax": {"name": "Senior Valuation Limitation (\"Senior Freeze\")", "blurb": "Owners 65+ can freeze fair cash value for ad valorem purposes if income is under HUD median for the county (varies — typically $74K–$94K). Additional Senior Citizen Sales Tax Relief credit available.", "url": "https://oklahoma.gov/tax/individuals/property/exemptions.html"},
+    "highlights": ["Senior valuation freeze — generous income limits.", "Living Choice waiver — HCBS.", "Senior Health Insurance Counseling Program (SHIP)."]
+  },
+  "OR": {
+    "name": "Oregon",
+    "dept_aging": {"name": "Oregon Department of Human Services — Aging and People with Disabilities", "url": "https://www.oregon.gov/dhs/seniors-disabilities/Pages/index.aspx"},
+    "medicaid_ltc": "https://www.oregon.gov/oha/HSD/OHP/Pages/Long-Term-Care.aspx",
+    "spap": null,
+    "property_tax": {"name": "Senior and Disabled Property Tax Deferral", "blurb": "Defers all or part of property tax for owners 62+ with income under $59,500 (2026). State pays the county; lien on property until sale or death.", "url": "https://www.oregon.gov/dor/programs/property/Pages/deferral.aspx"},
+    "highlights": ["Senior Property Tax Deferral — no payment due during your lifetime.", "Oregon Project Independence — state-funded in-home services.", "K Plan (1915(k) State Plan) covers attendant care."]
+  },
+  "PA": {
+    "name": "Pennsylvania",
+    "dept_aging": {"name": "Pennsylvania Department of Aging", "url": "https://www.pa.gov/agencies/aging.html"},
+    "medicaid_ltc": "https://www.pa.gov/agencies/dhs/older-adults-people-with-disabilities/community-healthchoices.html",
+    "spap": {"name": "PACE / PACENET", "url": "https://www.pa.gov/agencies/aging/programs-and-services/pa-prescription-assistance-pace.html"},
+    "property_tax": {"name": "Property Tax/Rent Rebate Program", "blurb": "Statewide rebate up to $1,000 for owners and renters 65+ (or widowed 50+) with income under $46,520 (expanded substantially in 2024).", "url": "https://www.pa.gov/agencies/revenue/incentives-credits-and-programs/ptrr.html"},
+    "highlights": ["PACE / PACENET — among the most generous SPAPs nationally.", "Property Tax/Rent Rebate up to $1,000 (2024 expansion).", "Community HealthChoices — managed LTSS."]
+  },
+  "RI": {
+    "name": "Rhode Island",
+    "dept_aging": {"name": "Rhode Island Office of Healthy Aging", "url": "https://oha.ri.gov"},
+    "medicaid_ltc": "https://eohhs.ri.gov/consumer/consumer-information/program-information/long-term-services-and-supports",
+    "spap": {"name": "RIPAE", "url": "https://oha.ri.gov/healthy-living/financial-assistance/ripae"},
+    "property_tax": {"name": "Property Tax Relief Credit", "blurb": "Refundable state income tax credit for owners 65+ (or disabled) with income under $36,000. Many cities/towns offer additional senior exemptions.", "url": "https://tax.ri.gov/forms/individual/property-tax-relief"},
+    "highlights": ["RIPAE supplements Part D for moderate-income seniors.", "Co-Pay Program covers in-home services for non-Medicaid 65+.", "ICI (Independent Provider) HCBS option."]
+  },
+  "SC": {
+    "name": "South Carolina",
+    "dept_aging": {"name": "South Carolina Department on Aging", "url": "https://aging.sc.gov"},
+    "medicaid_ltc": "https://www.scdhhs.gov/program/long-term-care-services-supports",
+    "spap": {"name": "SilverxCard", "url": "https://aging.sc.gov/programs-initiatives/silverxcard"},
+    "property_tax": {"name": "Homestead Exemption (Age 65+)", "blurb": "First $50,000 of fair market value exempt for owners 65+ regardless of income. Plus the 4% legal-residence assessment ratio (vs. 6% non-owner-occupied).", "url": "https://dor.sc.gov/exempt-property"},
+    "highlights": ["Homestead exemption at 65+ with no income test.", "Community Choices Waiver — HCBS.", "Insurance Counseling Assistance and Referrals for Elders (I-CARE) = state SHIP."]
+  },
+  "SD": {
+    "name": "South Dakota",
+    "dept_aging": {"name": "South Dakota Department of Human Services — Adult Services and Aging", "url": "https://dhs.sd.gov/asa/"},
+    "medicaid_ltc": "https://dss.sd.gov/medicaid/",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Reduction for Elderly + Assessment Freeze", "blurb": "Sliding-scale property tax reduction for owners 65+ with income under $35,962 (2026). Separate Assessment Freeze for owners 65+ with income under $36,500.", "url": "https://dor.sd.gov/individuals/property/relief-programs/"},
+    "highlights": ["Both a property tax reduction AND assessment freeze available.", "HOPE waiver — HCBS.", "No state income tax (relevant for retirees)."]
+  },
+  "TN": {
+    "name": "Tennessee",
+    "dept_aging": {"name": "Tennessee Commission on Aging and Disability", "url": "https://www.tn.gov/aging.html"},
+    "medicaid_ltc": "https://www.tn.gov/tenncare/long-term-services-supports.html",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Relief + Property Tax Freeze", "blurb": "Property Tax Relief reimburses up to a state-set portion for owners 65+ with income under $36,370 (2026). Property Tax Freeze (county-adopted) locks in tax for owners 65+ with income under varying county-set caps.", "url": "https://comptroller.tn.gov/office-functions/pa/property-taxes/property-tax-programs/tax-relief.html"},
+    "highlights": ["Both Property Tax Relief and county-level Property Tax Freeze.", "CHOICES program — managed LTSS.", "No state income tax on wages or pensions."]
+  },
+  "TX": {
+    "name": "Texas",
+    "dept_aging": {"name": "Texas Health and Human Services — Aging Services", "url": "https://www.hhs.texas.gov/services/aging"},
+    "medicaid_ltc": "https://www.hhs.texas.gov/services/aging/long-term-care",
+    "spap": null,
+    "property_tax": {"name": "Over-65 Homestead Exemption + School Tax Ceiling", "blurb": "Owners 65+ get an additional $10K homestead exemption on school district taxes (on top of standard $100K). School tax bill is permanently frozen at the amount due in the year you turned 65 (\"tax ceiling\"). Counties may add their own senior exemptions.", "url": "https://comptroller.texas.gov/taxes/property-tax/exemptions/"},
+    "highlights": ["School tax ceiling at 65 — locks in your school tax forever.", "STAR+PLUS — managed LTSS.", "No state income tax."]
+  },
+  "UT": {
+    "name": "Utah",
+    "dept_aging": {"name": "Utah Division of Aging and Adult Services", "url": "https://daas.utah.gov"},
+    "medicaid_ltc": "https://medicaid.utah.gov/long-term-care/",
+    "spap": null,
+    "property_tax": {"name": "Circuit Breaker (Renter Refund + Homeowner's Credit)", "blurb": "Owners 66+ with income under $40,840 (2026) get a sliding-scale credit up to $1,259. Renters 65+ with similar income limits get a separate refund.", "url": "https://propertytax.utah.gov/general/relief-programs/"},
+    "highlights": ["Circuit Breaker credit up to $1,259.", "Aging Waiver — HCBS.", "SHIP under DAAS."]
+  },
+  "VT": {
+    "name": "Vermont",
+    "dept_aging": {"name": "Vermont Department of Disabilities, Aging and Independent Living", "url": "https://dail.vermont.gov"},
+    "medicaid_ltc": "https://dvha.vermont.gov/members/long-term-care",
+    "spap": {"name": "VPharm", "url": "https://dvha.vermont.gov/members/pharmacy/vpharm"},
+    "property_tax": {"name": "Renter Credit + Homestead Property Tax Credit", "blurb": "Both renters and homeowners can claim income-based property tax credits — sliding scale, age-neutral but very generous for fixed-income retirees.", "url": "https://tax.vermont.gov/individuals/credits-deductions"},
+    "highlights": ["VPharm covers Medicare Part D premiums up to set limits.", "Choices for Care (1115 waiver) integrates LTSS.", "Strong AAA system (5 regions covering all 14 counties)."]
+  },
+  "VA": {
+    "name": "Virginia",
+    "dept_aging": {"name": "Virginia Department for Aging and Rehabilitative Services", "url": "https://www.dars.virginia.gov"},
+    "medicaid_ltc": "https://www.dmas.virginia.gov/for-members/long-term-care/",
+    "spap": null,
+    "property_tax": {"name": "Real Estate Tax Relief / Exemption (Local)", "blurb": "Virginia delegates senior property tax relief to localities. Most cities/counties offer significant exemption or freeze for owners 65+ with income/asset limits set locally (e.g., Fairfax allows up to 100% exemption for income under ~$60K).", "url": "https://www.tax.virginia.gov/local-tax-rates"},
+    "highlights": ["Local senior property tax programs — check your county/city.", "Commonwealth Coordinated Care Plus (CCC Plus) — managed LTSS.", "Virginia Insurance Counseling and Assistance Program (VICAP) = SHIP."]
+  },
+  "WA": {
+    "name": "Washington",
+    "dept_aging": {"name": "Washington State Department of Social and Health Services — Aging and Long-Term Support", "url": "https://www.dshs.wa.gov/altsa"},
+    "medicaid_ltc": "https://www.dshs.wa.gov/altsa/home-and-community-services",
+    "spap": null,
+    "property_tax": {"name": "Senior Property Tax Exemption + Deferral", "blurb": "Property Tax Exemption reduces value by sliding-scale amount for owners 61+ with income under $66,000 (county-indexed). Property Tax Deferral lets seniors defer up to 80% of taxes (state pays, lien on property).", "url": "https://dor.wa.gov/taxes-rates/property-tax/property-tax-exemptions-and-deferrals"},
+    "highlights": ["Long-term care payroll tax (WA Cares Fund) launching benefits in 2026 — first state-run LTC insurance.", "COPES Waiver — HCBS.", "Senior exemption income limit indexed to county median (very generous in King/Snohomish)."]
+  },
+  "WV": {
+    "name": "West Virginia",
+    "dept_aging": {"name": "West Virginia Bureau of Senior Services", "url": "https://wvseniorservices.gov"},
+    "medicaid_ltc": "https://dhhr.wv.gov/bms/Members/longterm/Pages/default.aspx",
+    "spap": {"name": "Golden Mountaineer Discount", "url": "https://wvseniorservices.gov/programs-services/"},
+    "property_tax": {"name": "Senior Citizen Tax Credit + Homestead Exemption", "blurb": "$20,000 homestead exemption for owners 65+ (or totally disabled) regardless of income. Senior Citizen Tax Credit for income under federal poverty limit.", "url": "https://tax.wv.gov/Individuals/Pages/SeniorCitizenAndDisabledPropertyTaxCredit.aspx"},
+    "highlights": ["Homestead exemption ($20K) regardless of income at 65+.", "Aged & Disabled Waiver — HCBS.", "Family Alzheimer's In-Home Respite (FAIR) program."]
+  },
+  "WI": {
+    "name": "Wisconsin",
+    "dept_aging": {"name": "Wisconsin Department of Health Services — Aging Programs", "url": "https://www.dhs.wisconsin.gov/aging/index.htm"},
+    "medicaid_ltc": "https://www.dhs.wisconsin.gov/long-term-care/index.htm",
+    "spap": {"name": "SeniorCare", "url": "https://www.dhs.wisconsin.gov/seniorcare/index.htm"},
+    "property_tax": {"name": "Homestead Credit", "blurb": "Refundable income-tax credit for owners and renters with household income under $24,680 (single, 2026). Substantially boosted for elderly/disabled.", "url": "https://www.revenue.wi.gov/Pages/HTML/homestead.aspx"},
+    "highlights": ["SeniorCare — drug coverage at $30/year deductible (cheapest SPAP in country).", "Family Care + IRIS — Wisconsin's two HCBS options.", "Strong PACE coverage in Milwaukee + Madison."]
+  },
+  "WY": {
+    "name": "Wyoming",
+    "dept_aging": {"name": "Wyoming Department of Health — Aging Division", "url": "https://health.wyo.gov/aging/"},
+    "medicaid_ltc": "https://health.wyo.gov/healthcarefin/medicaid/long-term-care/",
+    "spap": null,
+    "property_tax": {"name": "Property Tax Refund Program", "blurb": "Statewide refund for residents with household income under specified thresholds. 2024–2025 Long-Term Homeowner Exemption added a 50% exemption for owners 65+ who've lived in WY 25+ years.", "url": "https://revenue.wyo.gov/property-tax-division"},
+    "highlights": ["Long-Term Homeowner exemption (50%) for 65+ with 25+ year residency.", "Community Choices Waiver — HCBS.", "No state income tax."]
+  },
+  "DC": {
+    "name": "District of Columbia",
+    "dept_aging": {"name": "DC Department of Aging and Community Living", "url": "https://dacl.dc.gov"},
+    "medicaid_ltc": "https://dhcf.dc.gov/page/long-term-care",
+    "spap": null,
+    "property_tax": {"name": "Senior Citizen / Disabled Property Tax Relief", "blurb": "50% reduction in real property tax for homeowners 65+ with income under $174,600 (2026, very generous in DC). Plus property tax deferral options.", "url": "https://otr.cfo.dc.gov/page/senior-citizen-or-disabled-property-owner-real-property-tax-relief"},
+    "highlights": ["50% senior property tax reduction with high income ceiling.", "EPD (Elderly and Persons with Physical Disabilities) Waiver — HCBS.", "Senior Service Network — single point of triage via DACL."]
+  }
+}

@@ -1,0 +1,5 @@
+flask==3.1.1
+gunicorn==23.0.0
+requests==2.32.3
+urllib3==2.6.3
+freshsky-common @ git+https://github.com/justfreshsky-jpg/freshsky-common.git@main

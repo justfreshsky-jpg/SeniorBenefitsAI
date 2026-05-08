@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+{% block hero %}
+<header class="hero">
+  <h1>👵 Find every benefit you've earned</h1>
+  <p>Federal and state benefits for Americans 55, 60, 62, 65, and 70+. Social Security, Medicare, Medicaid Long-Term Care, SNAP, SSI, senior housing, property tax breaks, and your state's special programs — explained plainly, then you go straight to the right .gov agency.</p>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Get a personalized checklist</h2>
+  <p style="color:var(--muted);margin:0 0 16px;font-size:15.5px;">Tell us a few basics. We'll match you against {{ federal_count }} federal programs and your state's senior programs, and tell you which ones to pursue first.</p>
+  <div class="grid-2">
+    <div>
+      <label for="f-age">Your age</label>
+      <input id="f-age" type="number" min="50" max="110" placeholder="65">
+    </div>
+    <div>
+      <label for="f-state">Your state</label>
+      <select id="f-state">
+        <option value="">— Select —</option>
+        {% for s in states %}<option value="{{ s.code }}">{{ s.name }}</option>{% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="f-marital">Marital status</label>
+      <select id="f-marital">
+        <option value="">— Select —</option>
+        <option value="single">Single / never married</option>
+        <option value="married">Married</option>
+        <option value="widowed">Widowed</option>
+        <option value="divorced">Divorced</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-income">Monthly household income (rough)</label>
+      <select id="f-income">
+        <option value="">— Select —</option>
+        <option value="under $1,500">Under $1,500</option>
+        <option value="$1,500–$2,500">$1,500 – $2,500</option>
+        <option value="$2,500–$4,000">$2,500 – $4,000</option>
+        <option value="$4,000–$6,000">$4,000 – $6,000</option>
+        <option value="over $6,000">Over $6,000</option>
+        <option value="prefer not to say">Prefer not to say</option>
+      </select>
+    </div>
+  </div>
+  <div style="margin-top:12px;">
+    <label style="display:flex;align-items:center;gap:10px;font-weight:500;cursor:pointer;">
+      <input id="f-vet" type="checkbox" style="width:auto;margin:0;">
+      I'm a wartime veteran or surviving spouse of one
+    </label>
+  </div>
+  <div style="margin-top:14px;">
+    <label for="f-situation">Anything specific going on? (Optional — helps us prioritize)</label>
+    <textarea id="f-situation" placeholder="Examples: I'm losing my job at 62 and worried about health insurance. My mother needs nursing home care. I rent and my landlord just raised rent again. I just turned 65 and don't know how to enroll in Medicare. I'm a Vietnam veteran and was denied VA pension years ago."></textarea>
+  </div>
+  <button class="primary" id="f-btn" style="margin-top:14px;">Build my checklist</button>
+  <div class="error" id="f-err"></div>
+  <div class="output" id="f-out"></div>
+</div>
+
+<div class="card" id="state-picker">
+  <h2>Or browse by state</h2>
+  <p style="color:var(--muted);margin:0 0 6px;font-size:15.5px;">Each state runs its own pharmacy assistance, property tax relief, and Medicaid LTC office on top of the federal programs. Pick yours:</p>
+  <div class="state-grid">
+    {% for s in states %}<a href="/state/{{ s.code }}">{{ s.name }}</a>{% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <h2>Or browse the federal programs</h2>
+  <p style="color:var(--muted);margin:0 0 14px;font-size:15.5px;">{{ federal_count }} federal programs serve Americans 55+, organized by what they help with.</p>
+  {% for cat in categories %}
+  <div style="margin-bottom:14px;">
+    <strong style="font-size:16px;">{{ cat.emoji }} {{ cat.name }}</strong>
+    <span style="color:var(--muted);font-size:14.5px;"> — {{ cat.blurb }}</span>
+  </div>
+  {% endfor %}
+  <a href="/federal" style="display:inline-block;margin-top:6px;font-weight:600;">See all federal programs →</a>
+</div>
+
+<div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+  <h3 style="margin-top:0;">Three places that screen you in one shot</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li><a href="https://www.benefitscheckup.org" rel="noopener" target="_blank">BenefitsCheckUp.org</a> (NCOA) — checks 2,500+ federal, state, and local programs in 15 minutes.</li>
+    <li><a href="https://www.ssa.gov/benefits/forms/" rel="noopener" target="_blank">SSA online services</a> — apply for Social Security retirement, SSI, Extra Help, Medicare in one place.</li>
+    <li><a href="https://eldercare.acl.gov" rel="noopener" target="_blank">Eldercare Locator</a> — finds your local Area Agency on Aging, the federal hub for in-person help.</li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const $ = (id) => document.getElementById(id);
+  const fmtMd = (txt) => txt
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[(.+?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/(https?:\/\/[^\s\)]+)/g, (m) => m.startsWith('"') ? m : '<a href="' + m + '" target="_blank" rel="noopener">' + m + '</a>');
+
+  $('f-btn').addEventListener('click', async () => {
+    const btn = $('f-btn'), out = $('f-out'), err = $('f-err');
+    err.classList.remove('shown'); out.classList.remove('shown');
+    const payload = {
+      age: $('f-age').value,
+      state: $('f-state').value,
+      marital: $('f-marital').value,
+      income: $('f-income').value,
+      veteran: $('f-vet').checked,
+      situation: $('f-situation').value,
+    };
+    if (!payload.age) { err.textContent = 'Please tell us your age.'; err.classList.add('shown'); return; }
+    if (!payload.state) { err.textContent = 'Please pick your state.'; err.classList.add('shown'); return; }
+    btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Building your checklist…';
+    try {
+      const r = await fetch('/api/personalized-checklist', {
+        method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        if (data.upgrade_url) {
+          err.innerHTML = (data.error || 'Daily limit reached.') + ' <a href="' + data.upgrade_url + '">Upgrade for unlimited →</a>';
+        } else {
+          err.textContent = data.error || 'Something went wrong.';
+        }
+        err.classList.add('shown');
+      } else {
+        out.innerHTML = fmtMd(data.result);
+        out.classList.add('shown');
+        out.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    } catch (e) {
+      err.textContent = 'Network error. Please try again.'; err.classList.add('shown');
+    } finally {
+      btn.disabled = false; btn.textContent = 'Build my checklist';
+    }
+  });
+</script>
+{% endblock %}
