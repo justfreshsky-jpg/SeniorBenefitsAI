@@ -118,8 +118,8 @@
       });
       const data = await r.json();
       if (!r.ok) {
-        if (data.upgrade_url) {
-          err.innerHTML = (data.error || 'Daily limit reached.') + ' <a href="' + data.upgrade_url + '">Upgrade for unlimited →</a>';
+        if (data.donation_url) {
+          err.innerHTML = (data.error || 'Slow down a bit — rate limit hit.') + ' <a href="' + data.donation_url + '">💛 Support to help raise the cap</a>';
         } else {
           err.textContent = data.error || 'Something went wrong.';
         }
