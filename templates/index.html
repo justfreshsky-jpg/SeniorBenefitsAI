@@ -118,8 +118,8 @@
       });
       const data = await r.json();
       if (!r.ok) {
-        if (data.donation_url) {
-          err.innerHTML = (data.error || 'Slow down a bit — rate limit hit.') + ' <a href="' + data.donation_url + '">💛 Support to help raise the cap</a>';
+        if (r.status === 429) {
+          err.innerHTML = 'Daily free limit reached. <a href="https://www.freshskyai.com/pricing" target="_blank" rel="noopener" style="color:#6366f1;font-weight:600;">⚡ Get Pro — $1.99/mo</a> unlocks unlimited use.';
         } else {
           err.textContent = data.error || 'Something went wrong.';
         }
