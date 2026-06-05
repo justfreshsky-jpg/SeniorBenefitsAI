@@ -119,7 +119,7 @@
       const data = await r.json();
       if (!r.ok) {
         if (r.status === 429) {
-          err.innerHTML = 'Daily free limit reached. <a href="https://www.freshskyai.com/pricing" target="_blank" rel="noopener" style="color:#6366f1;font-weight:600;">⚡ Get Pro — $1.99/mo</a> unlocks unlimited use.';
+          err.textContent = 'Fair-use limit reached. Please come back later so shared AI capacity remains available to everyone.';
         } else {
           err.textContent = data.error || 'Something went wrong.';
         }

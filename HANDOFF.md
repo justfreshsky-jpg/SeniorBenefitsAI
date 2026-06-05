@@ -51,7 +51,7 @@ gh workflow run setup-batch-stripe-and-env.yml --repo justfreshsky-jpg/freshskya
   -f app_slug=seniorbenefits -f app_brand="Senior Benefits AI"
 ```
 
-This creates the Stripe Product + monthly + yearly Prices and binds `STRIPE_PRICE_MONTHLY` / `STRIPE_PRICE_YEARLY` to the Cloud Run service. (Prices follow the unified $1.99/mo / $19/yr Pro tier — but `/subscribe` redirects to hub anyway, so these mostly enable proper webhook routing.)
+Do not create new access subscriptions. All tools are free subject to fair-use limits. Existing Stripe bindings remain only for legacy subscriber billing and should not be removed automatically.
 
 ### 4. Add subdomain mapping
 

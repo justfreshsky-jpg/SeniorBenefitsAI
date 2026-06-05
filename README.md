@@ -5,7 +5,7 @@ Federal and state benefits navigator for Americans 55+. Forwards users to author
 - **Live:** https://seniorbenefits.freshskyai.com (after first deploy + Cloud Run domain mapping)
 - **Slug:** `seniorbenefits`
 - **Category:** `benefits`
-- **Subscription:** unified Pro across the Fresh Sky AI portfolio (`/subscribe` redirects to hub).
+- **Access:** free subject to fair-use limits; legacy `/subscribe` routes redirect to voluntary sponsorship.
 
 ## Routes
 
