@@ -68,7 +68,7 @@ from freshsky_common.freemium import register_freemium  # noqa: E402
 
 _freemium_check = register_freemium(
     app,
-    free_daily_limit=int(os.environ.get('FREE_DAILY_LIMIT', '5')),
+    free_daily_limit=-1,
     google_client_id=os.environ.get('GOOGLE_CLIENT_ID', ''),
     google_client_secret=os.environ.get('GOOGLE_CLIENT_SECRET', ''),
     stripe_secret_key=os.environ.get('STRIPE_SECRET_KEY', ''),
