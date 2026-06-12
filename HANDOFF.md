@@ -37,9 +37,7 @@ After first deploy succeeds, the service `seniorbenefits` exists. Bind env vars 
 gcloud run services update seniorbenefits --region us-central1 \
   --update-secrets=SECRET_KEY=app-secret-key:latest \
   --update-secrets=GOOGLE_CLIENT_SECRET=google-oauth-client-secret:latest \
-  --update-secrets=STRIPE_SECRET_KEY=stripe-secret-key:latest \
-  --update-secrets=STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest \
-  --update-env-vars=GA_MEASUREMENT_ID=G-T424F11MPH,APP_URL=https://seniorbenefits.freshskyai.com,GOOGLE_CLIENT_ID=<existing-shared-id>,FREE_DAILY_LIMIT=5,LLM_PROVIDER=auto-trusted
+  --update-env-vars=GA_MEASUREMENT_ID=G-T424F11MPH,APP_URL=https://seniorbenefits.freshskyai.com,GOOGLE_CLIENT_ID=<existing-shared-id>,LLM_PROVIDER=auto-trusted
 ```
 
 Plus the LLM keys (GROQ_KEY, CEREBRAS_KEY, GEMINI_KEY, etc.) — bind from Secret Manager in the same way as other batch apps. Easiest is to copy the env-var spec from an existing benefits-category app (e.g., `medicaidcheck`, `snapcheck`).

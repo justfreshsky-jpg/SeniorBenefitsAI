@@ -68,15 +68,9 @@ from freshsky_common.freemium import register_freemium  # noqa: E402
 
 _freemium_check = register_freemium(
     app,
-    free_daily_limit=-1,
     google_client_id=os.environ.get('GOOGLE_CLIENT_ID', ''),
     google_client_secret=os.environ.get('GOOGLE_CLIENT_SECRET', ''),
-    stripe_secret_key=os.environ.get('STRIPE_SECRET_KEY', ''),
-    stripe_price_monthly=os.environ.get('STRIPE_PRICE_MONTHLY', ''),
-    stripe_price_yearly=os.environ.get('STRIPE_PRICE_YEARLY', ''),
-    stripe_webhook_secret=os.environ.get('STRIPE_WEBHOOK_SECRET', ''),
     primary_url=os.environ.get('APP_URL', 'http://localhost:5000'),
-    owner_email=os.environ.get('OWNER_EMAIL', 'admin@freshskyllc.com'),
 )
 
 _metrics = {'requests_total': 0, 'provider_success': collections.Counter(), 'provider_failure': collections.Counter()}
