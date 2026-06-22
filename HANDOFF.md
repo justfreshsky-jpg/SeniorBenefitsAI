@@ -40,18 +40,11 @@ gcloud run services update seniorbenefits --region us-central1 \
   --update-env-vars=GA_MEASUREMENT_ID=G-T424F11MPH,APP_URL=https://seniorbenefits.freshskyai.com,GOOGLE_CLIENT_ID=<existing-shared-id>,LLM_PROVIDER=auto-trusted
 ```
 
-Plus the LLM keys (GROQ_KEY, CEREBRAS_KEY, GEMINI_KEY, etc.) — bind from Secret Manager in the same way as other batch apps. Easiest is to copy the env-var spec from an existing benefits-category app (e.g., `medicaidcheck`, `snapcheck`).
+Bind only approved restricted-provider keys. Cerebras is the simplest default;
+Groq requires explicit zero-data-retention confirmation. Access is free and no
+subscription products should be created.
 
-### 3. Run setup-batch-stripe-and-env to create Stripe products
-
-```bash
-gh workflow run setup-batch-stripe-and-env.yml --repo justfreshsky-jpg/freshskyai \
-  -f app_slug=seniorbenefits -f app_brand="Senior Benefits AI"
-```
-
-Do not create new access subscriptions. All tools are free subject to fair-use limits. Existing Stripe bindings remain only for legacy subscriber billing and should not be removed automatically.
-
-### 4. Add subdomain mapping
+### 3. Add subdomain mapping
 
 Cloud Run console → `seniorbenefits` service → Custom domains → map `seniorbenefits.freshskyai.com`.
 Or via REST (since `gcloud run domain-mappings` may not work locally per memory):
@@ -118,8 +111,8 @@ curl -sI https://seniorbenefits.freshskyai.com/federal/medicare | head -1
 ## Notes & open decisions
 
 - **Subdomain choice:** I went with `seniorbenefits.freshskyai.com` (descriptive, unambiguous). If you want shorter, `senior.freshskyai.com` is open — the previous SeniorCareAI (retired 2026-05-04) may have used it. To switch, edit the slug in: `app.py`, `Dockerfile`, `.github/workflows/deploy.yml`, `BATCH_SUBDOMAINS`, `PORTFOLIO`, hub card URL, and Cloud Run service name.
-- **Affiliates:** `partners.json` empty for `benefits` category currently (per OPERATIONS.md). Cards stay hidden until you add partners. Most lucrative for this audience: Medicare Advantage broker leads ($300–$1k/lead via SelectQuote, eHealth, GoHealth via Impact), reverse mortgage (HECM affiliates via direct programs), senior moving (Bekins, FlatRate via Impact), hearing aids (HearingTracker via Impact).
-- **Local testing:** I couldn't run `pytest` locally because freshsky-common doesn't install via the system pip 3.9. Tests are written and will run cleanly once you spin up a venv with Python 3.12. Or just trust the first deploy.
+- **Revenue:** Access remains free. The shared Donate link is the only support path.
+- **Local testing:** Use Python 3.12 and run `pytest -q` before deployment.
 - **Domain registration:** if you want `seniorbenefitsai.com` as a separate apex (not a subdomain), register on Namecheap and add a redirect — same pattern as guideforlivingus.com → USALivingGuide. Not required.
 
 ## What this site does (one-paragraph product summary for any future reference)

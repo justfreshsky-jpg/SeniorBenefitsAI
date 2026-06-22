@@ -76,12 +76,6 @@
     {% block content %}{% endblock %}
   </main>
 
-  <section id="affiliates" style="display:none;max-width:720px;margin:0 auto 30px;padding:0 16px;">
-    <h3 style="font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;text-align:center;">Helpful services</h3>
-    <div id="affiliateCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;"></div>
-    <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5;">Some pages include &ldquo;Helpful services&rdquo; cards. Fresh Sky LLC may earn a small commission if you sign up through one. We never charge you extra and we never let it shape our guidance — government programs always come first.</p>
-  </section>
-
   <footer>
     <div>
       &copy; Fresh Sky LLC &middot; <a href="https://freshskyai.com">freshskyai.com</a>
@@ -96,24 +90,6 @@
       Senior Benefits AI is an educational tool. We summarize publicly available program rules and forward you to authoritative .gov agencies. Eligibility, income limits, and benefit amounts change every year — confirm with the agency before relying on any number you read here. Nothing on this site is legal, medical, or financial advice.
     </div>
   </footer>
-
-  <script>
-    fetch('/api/affiliates').then(r => r.json()).then(d => {
-      if (!d.partners || d.partners.length === 0) return;
-      const wrap = document.getElementById('affiliates');
-      const grid = document.getElementById('affiliateCards');
-      wrap.style.display = 'block';
-      d.partners.forEach(p => {
-        const a = document.createElement('a');
-        a.href = p.url;
-        a.target = '_blank';
-        a.rel = 'sponsored nofollow noopener';
-        a.style.cssText = 'display:block;padding:14px;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--fg);background:#fff;';
-        a.innerHTML = '<div style="font-weight:600;margin-bottom:4px;">' + p.name + '</div><div style="color:var(--muted);font-size:13.5px;">' + p.blurb + '</div>';
-        grid.appendChild(a);
-      });
-    }).catch(() => {});
-  </script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
