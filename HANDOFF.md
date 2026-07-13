@@ -4,7 +4,7 @@ Repo built locally; everything below is **user-only** because it touches GitHub 
 
 ## What's already done (in this branch on local disk)
 
-- `/Users/eguduk/SeniorBenefitsAI/` complete: app.py, 22-program federal_benefits.json, 51-state states.json, 5 templates, Dockerfile, deploy.yml, tests, README
+- `/Users/eguduk/freshskyai/apps/SeniorBenefitsAI/` complete: app.py, 22-program federal_benefits.json, 51-state states.json, 5 templates, Dockerfile, deploy.yml, tests, README
 - `freshsky-common/freshsky_common/revenue.py` — added `seniorbenefits` to PORTFOLIO list
 - `freshskyai/.github/workflows/indexnow-sweep.yml` — added `'seniorbenefits'` to BATCH_SUBDOMAINS
 - `freshskyai/index.html` — added 👵 hub card in the benefits cluster (after Childcare Finder)
@@ -15,7 +15,7 @@ Repo built locally; everything below is **user-only** because it touches GitHub 
 ### 1. Create GitHub repo + first push (kicks off auto-deploy)
 
 ```bash
-cd /Users/eguduk/SeniorBenefitsAI
+cd /Users/eguduk/freshskyai/apps/SeniorBenefitsAI
 git init
 git add .
 git commit -m "Initial scaffold — Senior Benefits AI"
