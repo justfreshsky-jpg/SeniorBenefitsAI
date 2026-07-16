@@ -15,9 +15,9 @@ import json
 import logging
 import os
 import threading
-import time
 
-from flask import Flask, abort, jsonify, render_template, request, session
+from flask import Flask, abort, jsonify, render_template, request
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', os.urandom(32))
@@ -25,6 +25,7 @@ app.config.update(
     SESSION_COOKIE_SECURE=os.environ.get('SESSION_COOKIE_SECURE', 'true').lower() == 'true',
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE='Lax',
+    MAX_CONTENT_LENGTH=32 * 1024,
 )
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
@@ -51,9 +52,19 @@ _STATE_LIST = sorted(
 )
 
 
+@app.after_request
+def _protect_personalized_responses(response):
+    """Keep personalized inputs and generated checklists out of caches/indexes."""
+    if request.path == '/api/personalized-checklist':
+        response.headers['Cache-Control'] = 'private, no-store, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        response.headers['X-Robots-Tag'] = 'noindex, nofollow, noarchive'
+    return response
+
+
 from freshsky_common.security import install_security_headers  # noqa: E402
 install_security_headers(app)
-from freshsky_common.caching import ResponseCache  # noqa: E402
 from freshsky_common.revenue import install as _install_revenue  # noqa: E402
 _install_revenue(
     app,
@@ -64,6 +75,7 @@ _install_revenue(
 )
 
 from freshsky_common.freemium import register_freemium  # noqa: E402
+from freshsky_common.privacy import SensitiveDataError  # noqa: E402
 
 _freemium_check = register_freemium(
     app,
@@ -81,10 +93,23 @@ def _route_handler(f):
     def wrapper(*args, **kwargs):
         try:
             return f(*args, **kwargs)
+        except SensitiveDataError as exc:
+            return jsonify(
+                error='Remove personal identifiers before building a checklist.',
+                code='sensitive_data_detected',
+                categories=list(exc.categories),
+            ), 422
+        except HTTPException:
+            raise
         except Exception:
             logger.exception('Unhandled exception in %s', f.__name__)
             return jsonify(error='Something went wrong. Please try again.'), 500
     return wrapper
+
+
+@app.errorhandler(413)
+def request_too_large(_error):
+    return jsonify(error='Request is too large.'), 413
 
 
 # Provider calls are centralized in the privacy-restricted shared chain.
@@ -100,18 +125,19 @@ def _llm_via_shared_chain(system, user):
 
 _PROVIDERS = [('shared', _llm_via_shared_chain)]
 
-
-_LLM_CACHE = ResponseCache(max_entries=500, ttl_seconds=3600)
+_MARITAL_OPTIONS = frozenset(('', 'single', 'married', 'widowed', 'divorced'))
+_INCOME_OPTIONS = frozenset((
+    '',
+    'under $1,500',
+    '$1,500–$2,500',
+    '$2,500–$4,000',
+    '$4,000–$6,000',
+    'over $6,000',
+    'prefer not to say',
+))
 
 
 def _llm(system: str, user: str) -> str:
-    cache_key = ResponseCache.make_key(system, user)
-    cached = _LLM_CACHE.get(cache_key)
-    if cached is not None:
-        with _metrics_lock:
-            _metrics['provider_success']['cache'] += 1
-        return cached
-
     last_err = None
     for name, fn in _PROVIDERS:
         try:
@@ -119,15 +145,15 @@ def _llm(system: str, user: str) -> str:
             if out:
                 with _metrics_lock:
                     _metrics['provider_success'][name] += 1
-                result = out.strip()
-                _LLM_CACHE.set(cache_key, result)
-                return result
-        except Exception as e:
-            last_err = e
+                return out.strip()
+        except SensitiveDataError:
+            raise
+        except Exception as exc:
+            last_err = type(exc).__name__
             with _metrics_lock:
                 _metrics['provider_failure'][name] += 1
-            logger.warning('Provider %s failed: %s', name, e)
-    raise RuntimeError(f'All LLM providers failed: {last_err}')
+            logger.warning('Provider %s failed; error_type=%s', name, last_err)
+    raise RuntimeError('All LLM providers failed')
 
 
 _CHECKLIST_SYSTEM = """You are a benefits navigator for older Americans. Given a user's age, state, marital status, monthly income, and a brief description of their situation, you produce a PRIORITIZED, PERSONALIZED CHECKLIST of federal and state benefit programs they should investigate.
@@ -145,6 +171,21 @@ Do not invent programs. Stick to programs in widespread use and well-documented 
 
 Speak warmly, in plain English at an 8th-grade reading level. Address the reader as "you." End with a one-line disclaimer: "This is general guidance, not legal advice. Eligibility depends on your specific situation — confirm with the agency before relying on these numbers."
 """
+
+
+def _federal_program_context(benefit: dict) -> str:
+    age_label = (
+        f"age {benefit['age_start']}+" if benefit['age_start'] else 'any eligible age'
+    )
+    current_details = ''
+    if benefit.get('figures_as_of'):
+        current_details = (
+            f" Current official details ({benefit['figures_as_of']}): {benefit['what']}"
+        )
+    return (
+        f"- {benefit['name']} ({age_label}): {benefit['who']}"
+        f"{current_details} Apply: {benefit['url']}"
+    )
 
 
 @app.route('/')
@@ -210,7 +251,16 @@ def personalized_checklist():
     if gate is not None:
         return gate
 
-    data = request.get_json(silent=True) or {}
+    data = request.get_json(silent=True)
+    if data is None:
+        data = {}
+    if not isinstance(data, dict):
+        return jsonify(error='Please send a JSON object.'), 400
+    if any(not isinstance(data.get(field, ''), str) for field in ('state', 'marital', 'income', 'situation')):
+        return jsonify(error='Checklist fields must be text.'), 400
+    if not isinstance(data.get('veteran', False), bool):
+        return jsonify(error='Veteran status must be true or false.'), 400
+
     age_raw = data.get('age')
     state_code = (data.get('state') or '').strip().upper()
     marital = (data.get('marital') or '').strip().lower()
@@ -226,6 +276,10 @@ def personalized_checklist():
         return jsonify(error='Age must be between 50 and 110.'), 400
     if state_code not in _STATES:
         return jsonify(error='Please select a state.'), 400
+    if marital not in _MARITAL_OPTIONS:
+        return jsonify(error='Please select a valid marital status.'), 400
+    if income not in _INCOME_OPTIONS:
+        return jsonify(error='Please select a valid income range.'), 400
     if len(situation) > 1500:
         return jsonify(error='Situation description is too long (max 1500 characters).'), 400
 
@@ -244,8 +298,7 @@ def personalized_checklist():
         state_summary += "State highlights: " + ' | '.join(state_info['highlights'])
 
     fed_summary = "FEDERAL PROGRAMS AVAILABLE NATIONWIDE:\n" + "\n".join(
-        f"- {b['name']} (age {b['age_start'] or 'any'}+): {b['who']} | Apply: {b['url']}"
-        for b in _FED['benefits']
+        _federal_program_context(benefit) for benefit in _FED['benefits']
     )
 
     user_profile = (

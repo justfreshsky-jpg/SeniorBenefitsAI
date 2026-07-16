@@ -44,11 +44,16 @@
       "name": "Social Security Retirement",
       "age_start": 62,
       "who": "Anyone with 40 quarters (about 10 years) of work credits. Age 62 starts reduced benefits; full retirement age (FRA) is 66–67 depending on birth year; age 70 unlocks the maximum delayed-retirement credit.",
-      "what": "Monthly check based on your highest 35 years of indexed earnings. Average 2026 retired-worker benefit is around $2,000–$2,100/month; max at FRA is $4,018/month, max at 70 is around $5,108/month.",
+      "what": "Monthly benefit based on your highest 35 years of indexed earnings. SSA estimates the average retired-worker benefit at $2,071/month in January 2026. For someone who earned the taxable maximum every year from age 22, the 2026 maximum is $4,152/month at full retirement age or $5,181/month at age 70.",
       "tips": "Filing at 62 locks in a 25–30% permanent reduction. Each year you wait past FRA up to 70 adds 8% (delayed-retirement credit). Spousal and survivor benefits can be larger than your own — always run both numbers.",
       "apply": "Create or sign in to your account at ssa.gov/myaccount, then file online at ssa.gov/retirement.",
       "url": "https://www.ssa.gov/retirement",
-      "agency": "Social Security Administration"
+      "agency": "Social Security Administration",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "SSA 2026 COLA Fact Sheet", "url": "https://www.ssa.gov/cola/factsheets/2026.html"},
+        {"label": "SSA 2026 maximum retirement benefit FAQ", "url": "https://www.ssa.gov/faqs/en/questions/KA-01897.html"}
+      ]
     },
     {
       "key": "ssi",
@@ -56,59 +61,80 @@
       "name": "Supplemental Security Income (SSI)",
       "age_start": 65,
       "who": "Age 65+ (or any age if blind/disabled) with very limited income and assets. 2026 resource limits are $2,000 single / $3,000 couple (your home and one car don't count).",
-      "what": "Federal monthly cash payment up to $967/month (single) or $1,450/month (couple) in 2026. Many states add a state supplement on top.",
+      "what": "Maximum federal monthly cash payment of $994 for an eligible individual or $1,491 for an eligible couple in 2026. Countable income can reduce the payment, and some states add a supplement.",
       "tips": "SSI is needs-based and separate from Social Security retirement. You can receive both if your retirement benefit is small. Applying for SSI usually triggers automatic Medicaid enrollment in most states.",
       "apply": "Start at ssa.gov/ssi or call 1-800-772-1213. The full application requires an interview.",
       "url": "https://www.ssa.gov/ssi",
-      "agency": "Social Security Administration"
+      "agency": "Social Security Administration",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "SSA 2026 SSI payment amounts", "url": "https://www.ssa.gov/oact/cola/SSI.html"},
+        {"label": "SSA 2026 COLA Fact Sheet", "url": "https://www.ssa.gov/cola/factsheets/2026.html"}
+      ]
     },
     {
       "key": "ssdi",
       "category": "income",
       "name": "Social Security Disability (SSDI)",
-      "age_start": 50,
-      "who": "Under FRA, can't work for 12+ months due to a medical condition, and have enough recent work credits. Special rules at 50, 55, and 60 make approval easier (\"grid rules\").",
+      "age_start": null,
+      "who": "Before full retirement age, you may qualify if a disability or blindness affects your ability to work for at least a year (or is expected to result in death) and you have enough work history. In 2026, substantial gainful activity is generally $1,690/month, or $2,830/month for people SSA considers blind.",
       "what": "Monthly benefit equal to your projected Social Security retirement amount. Converts automatically to retirement at FRA. Medicare kicks in 24 months after SSDI starts.",
-      "tips": "If you're 55+ and have a physical impairment that rules out your past work, the Medical-Vocational Guidelines often direct a finding of disabled even without a \"listed\" impairment. Don't give up after a first denial — 70%+ of approvals come on appeal.",
+      "tips": "SSA considers your medical condition, work history, age, education, and skills. If SSA denies your claim, read the notice promptly and use the official appeal process by the deadline shown in it.",
       "apply": "ssa.gov/disability online, or any local SSA office.",
       "url": "https://www.ssa.gov/disability",
-      "agency": "Social Security Administration"
+      "agency": "Social Security Administration",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "SSA disability eligibility rules", "url": "https://www.ssa.gov/disability/eligibility"}
+      ]
     },
     {
       "key": "medicare",
       "category": "health",
       "name": "Medicare",
       "age_start": 65,
-      "who": "Age 65+ (or any age with ALS, ESRD, or 24 months of SSDI). Most people get Part A premium-free; Part B has a standard premium ($185/month in 2026, more with higher income via IRMAA).",
-      "what": "Part A (hospital), Part B (doctor/outpatient), Part D (drugs), plus Part C Medicare Advantage as an alternative bundle. Original Medicare + a Medigap plan + Part D is the most flexible combo; Medicare Advantage is the lowest-premium combo but locks you into a network.",
-      "tips": "Your 7-month Initial Enrollment Period starts 3 months before your 65th birthday month. Missing it triggers permanent late-enrollment penalties. You can also delay if you have credible employer coverage — keep written proof.",
+      "who": "Age 65+ (or earlier for certain disabilities, ALS, or ESRD). Most people get Part A premium-free. The standard Part B premium is $202.90/month in 2026, with a $283 annual deductible; higher-income beneficiaries may pay more through IRMAA.",
+      "what": "Part A covers inpatient hospital care, Part B covers doctor and outpatient services, and Part D covers prescription drugs. Medicare Advantage (Part C) is an alternative way to receive Part A and Part B, usually with a provider network. Compare coverage, provider networks, drug formularies, and total costs before choosing.",
+      "tips": "Your 7-month Initial Enrollment Period starts 3 months before your 65th birthday month. Missing it may trigger lasting late-enrollment penalties unless you qualify for a Special Enrollment Period, such as through current-employment group coverage. Keep written proof of qualifying coverage.",
       "apply": "If you already get Social Security at 65, enrollment in Parts A & B is automatic. Otherwise enroll at medicare.gov or ssa.gov/medicare. Pick a Part D plan and decide on Medigap during open enrollment (the 6-month window starting your Part B effective date offers guaranteed-issue Medigap).",
       "url": "https://www.medicare.gov",
-      "agency": "Centers for Medicare & Medicaid Services"
+      "agency": "Centers for Medicare & Medicaid Services",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "CMS 2026 Medicare Parts A and B fact sheet", "url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles"}
+      ]
     },
     {
       "key": "medicare-savings",
       "category": "health",
       "name": "Medicare Savings Programs (MSPs)",
-      "age_start": 65,
-      "who": "Medicare beneficiaries with limited income (typically up to about $1,800–$2,400/month single, more for couples — limits vary by state and program).",
-      "what": "Four programs (QMB, SLMB, QI, QDWI) that pay your Part B premium ($185/month back in your pocket) and — at the QMB level — also wipe out Medicare deductibles, copays, and coinsurance.",
-      "tips": "Many people who qualify never apply. The federal floor is generous; some states (NY, ME, CT, IN) raised limits even higher. Apply through your state Medicaid office, not Social Security.",
+      "age_start": null,
+      "who": "Medicare beneficiaries with limited income and resources. For 2026, the federal monthly income limits are $1,350 individual / $1,824 couple for QMB, $1,616 / $2,184 for SLMB, and $1,816 / $2,455 for QI. The resource limit for those programs is $9,950 individual / $14,910 couple. Alaska and Hawaii are higher, and states may use more generous rules.",
+      "what": "Four programs (QMB, SLMB, QI, QDWI) can pay Medicare premiums. QMB can also cover Medicare deductibles, coinsurance, and copayments for covered services. The standard Part B premium these programs may pay is $202.90/month in 2026.",
+      "tips": "Apply even if you are near or above the federal limits because states can count income and resources differently. Apply through your state Medicaid office; QI funding is first-come, first-served and requires annual renewal.",
       "apply": "Find your state Medicaid office via medicaid.gov, or use BenefitsCheckUp.org for a screener.",
       "url": "https://www.medicare.gov/basics/costs/help/medicare-savings-programs",
-      "agency": "Centers for Medicare & Medicaid Services"
+      "agency": "Centers for Medicare & Medicaid Services",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "Medicare.gov 2026 Medicare Savings Program limits", "url": "https://www.medicare.gov/basics/costs/help/medicare-savings-programs"}
+      ]
     },
     {
       "key": "extra-help",
       "category": "health",
       "name": "Extra Help (Part D Low-Income Subsidy)",
-      "age_start": 65,
-      "who": "Medicare beneficiaries earning under about $23,475 single / $31,725 couple (2026, 150% of FPL). Asset limits also apply but are generous.",
-      "what": "Cuts your Medicare Part D premium and deductible to $0 (full subsidy) and caps drug copays at a few dollars per prescription. Worth roughly $5,900/year.",
+      "age_start": null,
+      "who": "Medicare beneficiaries with 2026 annual income below $23,940 for an individual or $32,460 for a married couple, and resources below $18,090 or $36,100 respectively. Different limits apply in Alaska and Hawaii.",
+      "what": "For 2026, Extra Help reduces the Part D plan premium and deductible to $0 and limits participating-pharmacy copays to $5.10 for each generic drug and $12.65 for each brand-name drug. Covered drugs cost $0 after total drug costs reach $2,100.",
       "tips": "Since 2024 there's only one full-subsidy tier (no more partial subsidy). If you qualify for Medicaid, SSI, or an MSP, you get Extra Help automatically.",
       "apply": "Apply at ssa.gov/extrahelp or call 1-800-772-1213.",
       "url": "https://www.ssa.gov/medicare/part-d-extra-help",
-      "agency": "Social Security Administration"
+      "agency": "Social Security Administration",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "Medicare.gov 2026 Extra Help limits and costs", "url": "https://www.medicare.gov/basics/costs/help/drug-costs"}
+      ]
     },
     {
       "key": "medicaid-ltc",
@@ -117,10 +143,14 @@
       "age_start": 65,
       "who": "Seniors who need nursing home, assisted-living, or home-care help and meet state income/asset limits (typically $2,000 in countable assets for the applicant; spouse can keep more).",
       "what": "Pays for nursing home care (covered in every state) plus, in most states, Home and Community-Based Services (HCBS) waivers covering personal care, adult day services, and assisted living.",
-      "tips": "Medicare does NOT cover long-term custodial care. Only Medicaid does. Assets transferred within 5 years can trigger a penalty period — plan early. Spousal-impoverishment protections let the at-home spouse keep up to ~$3,948/month income and ~$157,920 in assets (2026).",
+      "tips": "Medicare generally does not cover long-term custodial care; Medicaid may cover it for eligible people. Transfers for less than fair market value during the 5-year lookback can delay Medicaid LTSS coverage. In 2026, spousal-impoverishment rules can protect a community-spouse income allowance up to $4,066.50/month and resources from $32,532 to $162,660; the exact allowance depends on state calculations and the couple's circumstances.",
       "apply": "Apply through your state Medicaid agency. An elder-law attorney is usually worth the fee for cases over $50K in assets.",
       "url": "https://www.medicaid.gov/medicaid/long-term-services-supports",
-      "agency": "Centers for Medicare & Medicaid Services"
+      "agency": "Centers for Medicare & Medicaid Services",
+      "figures_as_of": "July 16, 2026",
+      "figure_sources": [
+        {"label": "CMS updated 2026 SSI and spousal-impoverishment standards", "url": "https://www.medicaid.gov/sites/default/files/2026-04/cib04272026.pdf"}
+      ]
     },
     {
       "key": "pace",

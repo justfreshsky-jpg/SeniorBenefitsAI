@@ -19,6 +19,15 @@
   <h3>What you get</h3>
   <p>{{ benefit.what }}</p>
 
+  {% if benefit.figures_as_of and benefit.figure_sources %}
+  <p class="source-note">
+    Federal figures verified {{ benefit.figures_as_of }}. Sources:
+    {% for source in benefit.figure_sources %}
+      <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.label }}</a>{% if not loop.last %};{% else %}.{% endif %}
+    {% endfor %}
+  </p>
+  {% endif %}
+
   <h3>Tips that matter</h3>
   <p>{{ benefit.tips }}</p>
 

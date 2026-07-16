@@ -9,9 +9,9 @@
   },
   "AK": {
     "name": "Alaska",
-    "dept_aging": {"name": "Alaska Division of Senior and Disabilities Services", "url": "https://health.alaska.gov/dsds"},
-    "medicaid_ltc": "https://health.alaska.gov/dsds/Pages/medicaid/default.aspx",
-    "spap": {"name": "SeniorCare Drug Program", "url": "https://health.alaska.gov/dsds/Pages/seniorbenefits.aspx"},
+    "dept_aging": {"name": "Alaska Division of Senior and Disabilities Services", "url": "https://health.alaska.gov/en/senior-and-disabilities-services/"},
+    "medicaid_ltc": "https://health.alaska.gov/en/senior-and-disabilities-services/",
+    "spap": null,
     "property_tax": {"name": "Senior/Disabled Property Tax Exemption", "blurb": "$150,000 of assessed value exempt for owners 65+. Many municipalities exempt the entire residence.", "url": "https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor.aspx"},
     "highlights": ["Alaska Senior Benefits cash assistance ($76–$250/month).", "Permanent Fund Dividend (PFD) — annual statewide dividend regardless of age.", "Choice Waiver provides home-care alternative to nursing home."]
   },
@@ -66,7 +66,7 @@
   "FL": {
     "name": "Florida",
     "dept_aging": {"name": "Florida Department of Elder Affairs", "url": "https://elderaffairs.org"},
-    "medicaid_ltc": "https://ahca.myflorida.com/medicaid/long-term-care",
+    "medicaid_ltc": "https://ahca.myflorida.com/medicaid/statewide-medicaid-managed-care/long-term-care-program.html",
     "spap": null,
     "property_tax": {"name": "Senior Homestead Exemption (additional $50K)", "blurb": "Homestead exemption already exempts $50K. Counties may add an extra $50K exemption for owners 65+ with household income under ~$36,614 (2026, indexed annually). Some long-term residents (25+ years) get full exemption.", "url": "https://floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx"},
     "highlights": ["No state income tax (relevant for retirees living on Social Security + pension).", "SMMC Long-Term Care managed care — single point of contact for LTSS.", "Aging and Disability Resource Centers (ADRCs) in every county for triage."]
@@ -74,7 +74,7 @@
   "GA": {
     "name": "Georgia",
     "dept_aging": {"name": "Georgia Division of Aging Services", "url": "https://aging.georgia.gov"},
-    "medicaid_ltc": "https://medicaid.georgia.gov/programs/all-programs/elderly-and-disabled-waiver-program-edwp",
+    "medicaid_ltc": "https://medicaid.georgia.gov/programs/all-programs/waiver-programs",
     "spap": null,
     "property_tax": {"name": "School Property Tax Exemption (Age 62+)", "blurb": "Statewide school tax exemption for owners 62+ with income under $10K (state law). Many counties (Fulton, DeKalb, Cobb, Gwinnett) offer their own much more generous senior school tax exemptions — full exemption common at 65+.", "url": "https://dor.georgia.gov/property-tax-homestead-exemptions"},
     "highlights": ["Generous county-level school tax exemptions for seniors (varies — check your county tax assessor).", "Elderly & Disabled Waiver Program (EDWP) — Medicaid HCBS.", "GeorgiaCares = state SHIP."]

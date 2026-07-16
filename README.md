@@ -26,6 +26,15 @@ Federal and state benefits navigator for Americans 55+. Forwards users to author
 
 Both files are loaded at startup. Editing them and pushing triggers redeploy automatically (path filter matches in `.github/workflows/deploy.yml`).
 
+Federal entries with annual SSA/CMS amounts include `figures_as_of` and `figure_sources` fields so the UI shows when and where those numbers were verified.
+
+## Personalized-checklist privacy
+
+- Personalized prompts and generated checklists are not stored in the application response cache.
+- `/api/personalized-checklist` responses use private `no-store` cache controls and `X-Robots-Tag: noindex, nofollow, noarchive`.
+- Checklist request bodies are capped at 32 KB, and select fields accept only the options exposed in the UI to bound prompt size and cost.
+- Generated result text is rendered with safe DOM nodes; only HTTPS links on `.gov`, `.mil`, BenefitsCheckUp, or SHIP Help hosts become clickable.
+
 ## Local development
 
 ```bash

@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block hero %}
 <header class="hero">
-  <h1>👵 Find every benefit you've earned</h1>
-  <p>Agentic AI surfaces every federal and state benefit you've earned at 55, 60, 62, 65, and 70+ — Social Security, Medicare, Medicaid LTC, SNAP, SSI, senior housing, property tax breaks, and your state's special programs — then routes you straight to the right .gov agency. Built for the AGI decade.</p>
+  <h1>👵 Find benefits you may qualify for</h1>
+  <p>Explore major federal programs and official state resources for adults 55+ — including Social Security, Medicare, Medicaid LTC, SNAP, SSI, senior housing, and property tax relief — then build a personalized checklist of what to investigate first.</p>
 </header>
 {% endblock %}
 
@@ -55,9 +55,9 @@
     <label for="f-situation">Anything specific going on? (Optional — helps us prioritize)</label>
     <textarea id="f-situation" placeholder="Examples: I'm losing my job at 62 and worried about health insurance. My mother needs nursing home care. I rent and my landlord just raised rent again. I just turned 65 and don't know how to enroll in Medicare. I'm a Vietnam veteran and was denied VA pension years ago."></textarea>
   </div>
-  <button class="primary" id="f-btn" style="margin-top:14px;">Build my checklist</button>
-  <div class="error" id="f-err"></div>
-  <div class="output" id="f-out"></div>
+  <button class="primary" id="f-btn" type="button" style="margin-top:14px;">Build my checklist</button>
+  <div class="error" id="f-err" role="alert" aria-live="assertive"></div>
+  <div class="output" id="f-out" role="status" aria-live="polite" tabindex="-1"></div>
 </div>
 
 <div class="card" id="state-picker">
@@ -93,10 +93,72 @@
 {% block scripts %}
 <script>
   const $ = (id) => document.getElementById(id);
-  const fmtMd = (txt) => txt
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[(.+?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-    .replace(/(https?:\/\/[^\s\)]+)/g, (m) => m.startsWith('"') ? m : '<a href="' + m + '" target="_blank" rel="noopener">' + m + '</a>');
+
+  const trustedChecklistUrl = (rawUrl) => {
+    try {
+      const url = new URL(rawUrl);
+      const host = url.hostname.toLowerCase();
+      const trustedHost = host.endsWith('.gov') || host.endsWith('.mil') ||
+        host === 'benefitscheckup.org' || host.endsWith('.benefitscheckup.org') ||
+        host === 'shiphelp.org' || host.endsWith('.shiphelp.org');
+      return url.protocol === 'https:' && trustedHost ? url.href : null;
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const renderChecklist = (container, value) => {
+    const text = typeof value === 'string' ? value : '';
+    const pattern = /\*\*([^*\n]+)\*\*|\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)]+)/g;
+    const fragment = document.createDocumentFragment();
+    let cursor = 0;
+    let match;
+
+    const appendUrl = (rawUrl, label, markdownLink) => {
+      const trusted = trustedChecklistUrl(rawUrl);
+      if (!trusted) {
+        const plain = markdownLink ? `${label} (${rawUrl})` : rawUrl;
+        fragment.appendChild(document.createTextNode(plain));
+        return;
+      }
+      const link = document.createElement('a');
+      link.href = trusted;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = label;
+      fragment.appendChild(link);
+    };
+
+    while ((match = pattern.exec(text)) !== null) {
+      fragment.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+      if (match[1]) {
+        const strong = document.createElement('strong');
+        strong.textContent = match[1];
+        fragment.appendChild(strong);
+      } else if (match[2] && match[3]) {
+        appendUrl(match[3], match[2], true);
+      } else {
+        appendUrl(match[4], match[4], false);
+      }
+      cursor = pattern.lastIndex;
+    }
+    fragment.appendChild(document.createTextNode(text.slice(cursor)));
+    container.replaceChildren(fragment);
+  };
+
+  const setChecklistBusy = (button, busy) => {
+    button.disabled = busy;
+    if (!busy) {
+      button.removeAttribute('aria-busy');
+      button.textContent = 'Build my checklist';
+      return;
+    }
+    button.setAttribute('aria-busy', 'true');
+    const spinner = document.createElement('span');
+    spinner.className = 'spin';
+    spinner.setAttribute('aria-hidden', 'true');
+    button.replaceChildren(spinner, document.createTextNode('Building your checklist…'));
+  };
 
   $('f-btn').addEventListener('click', async () => {
     const btn = $('f-btn'), out = $('f-out'), err = $('f-err');
@@ -111,7 +173,7 @@
     };
     if (!payload.age) { err.textContent = 'Please tell us your age.'; err.classList.add('shown'); return; }
     if (!payload.state) { err.textContent = 'Please pick your state.'; err.classList.add('shown'); return; }
-    btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Building your checklist…';
+    setChecklistBusy(btn, true);
     try {
       const r = await fetch('/api/personalized-checklist', {
         method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload),
@@ -125,14 +187,15 @@
         }
         err.classList.add('shown');
       } else {
-        out.innerHTML = fmtMd(data.result);
+        renderChecklist(out, data.result);
         out.classList.add('shown');
+        out.focus({preventScroll:true});
         out.scrollIntoView({behavior:'smooth', block:'start'});
       }
     } catch (e) {
       err.textContent = 'Network error. Please try again.'; err.classList.add('shown');
     } finally {
-      btn.disabled = false; btn.textContent = 'Build my checklist';
+      setChecklistBusy(btn, false);
     }
   });
 </script>
