@@ -20,6 +20,8 @@ from flask import Flask, abort, jsonify, render_template, request
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
+from freshsky_common.hulec import install_hulec  # noqa: E402
+install_hulec(app, slug="seniorbenefits")
 app.secret_key = os.environ.get('SECRET_KEY', os.urandom(32))
 app.config.update(
     SESSION_COOKIE_SECURE=os.environ.get('SESSION_COOKIE_SECURE', 'true').lower() == 'true',
