@@ -5,7 +5,7 @@ Federal and state benefits navigator for Americans 55+. Forwards users to author
 - **Live:** https://seniorbenefits.freshskyai.com (after first deploy + Cloud Run domain mapping)
 - **Slug:** `seniorbenefits`
 - **Category:** `benefits`
-- **Access:** free subject to fair-use limits; legacy `/subscribe` routes redirect to voluntary sponsorship.
+- **Access:** three previews, then Focus at $9.99/month with Action Packs selected. Plus remains an optional three-workspace bundle. AI pauses at the allowance; no automatic overage charges.
 
 ## Routes
 
@@ -24,7 +24,7 @@ Federal and state benefits navigator for Americans 55+. Forwards users to author
 - [federal_benefits.json](federal_benefits.json) — 22 federal programs in 6 categories
 - [states.json](states.json) — 51 state entries (50 states + DC), each with department of aging, Medicaid LTC, property tax program, optional SPAP, and 2–3 standout programs
 
-Both files are loaded at startup. Editing them and pushing triggers redeploy automatically (path filter matches in `.github/workflows/deploy.yml`).
+Both files are loaded at startup. A main-branch change creates a tagged, inert, zero-traffic Cloud Run candidate after tests and a fresh budget-lock check. Live traffic is not changed automatically.
 
 Federal entries with annual SSA/CMS amounts include `figures_as_of` and `figure_sources` fields so the UI shows when and where those numbers were verified.
 
@@ -33,6 +33,7 @@ Federal entries with annual SSA/CMS amounts include `figures_as_of` and `figure_
 - Personalized prompts and generated checklists are not stored in the application response cache.
 - `/api/personalized-checklist` responses use private `no-store` cache controls and `X-Robots-Tag: noindex, nofollow, noarchive`.
 - Checklist request bodies are capped at 32 KB, and select fields accept only the options exposed in the UI to bound prompt size and cost.
+- Situation text is rejected before provider use when it contains personal identifiers such as email addresses, phone numbers, exact addresses, case numbers, or government identifiers.
 - Generated result text is rendered with safe DOM nodes; only HTTPS links on `.gov`, `.mil`, BenefitsCheckUp, or SHIP Help hosts become clickable.
 
 ## Local development

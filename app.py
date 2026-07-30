@@ -14,9 +14,10 @@ import functools
 import json
 import logging
 import os
+import re
 import threading
 
-from flask import Flask, abort, jsonify, render_template, request
+from flask import Flask, abort, jsonify, redirect, render_template, request
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
@@ -29,6 +30,44 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax',
     MAX_CONTENT_LENGTH=32 * 1024,
 )
+
+PORTFOLIO_WORKSPACE_ID = 'action_packs'
+PORTFOLIO_SUBSCRIPTION_TIER = 'focus'
+PORTFOLIO_SUBSCRIPTION_AMOUNT_CENTS = 999
+PORTFOLIO_FREE_PREVIEW_LIMIT = 3
+PORTFOLIO_CANDIDATE_MODE = (
+    os.environ.get('FRESHSKY_CANDIDATE_MODE', '').strip().lower()
+    in {'1', 'true', 'yes'}
+)
+
+
+@app.before_request
+def _candidate_cost_guard():
+    """Keep tagged release candidates public, observable, and inert."""
+    if not PORTFOLIO_CANDIDATE_MODE:
+        return None
+    if request.method not in {'GET', 'HEAD', 'OPTIONS'}:
+        return jsonify(
+            error='This release candidate is inert.',
+            code='candidate_mode',
+        ), 503
+    if (
+        request.path in {
+            '/',
+            '/health',
+            '/healthz',
+            '/api/user-status',
+            '/freemium.js',
+            '/freshsky.css',
+        }
+        or request.path.startswith('/static/')
+        or re.fullmatch(r'/freshsky-access-v\d+\.js', request.path)
+    ):
+        return None
+    return jsonify(
+        error='This release candidate is inert.',
+        code='candidate_mode',
+    ), 503
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger('seniorbenefits')
@@ -77,14 +116,40 @@ _install_revenue(
 )
 
 from freshsky_common.freemium import register_freemium  # noqa: E402
-from freshsky_common.privacy import SensitiveDataError  # noqa: E402
+from freshsky_common.privacy import (  # noqa: E402
+    SensitiveDataError,
+    enforce_deidentified_public_input,
+)
 
 _freemium_check = register_freemium(
     app,
     google_client_id=os.environ.get('GOOGLE_CLIENT_ID', ''),
     google_client_secret=os.environ.get('GOOGLE_CLIENT_SECRET', ''),
     primary_url=os.environ.get('APP_URL', 'http://localhost:5000'),
+    subscriptions_enabled=True,
+    subscription_tier=PORTFOLIO_SUBSCRIPTION_TIER,
+    subscription_amount_cents=PORTFOLIO_SUBSCRIPTION_AMOUNT_CENTS,
+    free_request_limit=PORTFOLIO_FREE_PREVIEW_LIMIT,
+    workspace_id=PORTFOLIO_WORKSPACE_ID,
 )
+
+
+def _portfolio_focus_subscribe():
+    """Use the central Action Packs Focus checkout and avoid duplicates."""
+    return redirect(
+        'https://www.freshskyai.com/subscribe?workspace=action_packs',
+        code=302,
+    )
+
+
+def _portfolio_billing_portal():
+    """Keep subscription management in the FreshSky control plane."""
+    return redirect('https://www.freshskyai.com/billing', code=302)
+
+
+app.view_functions['freemium_subscribe'] = _portfolio_focus_subscribe
+app.view_functions['freemium_subscribe_yearly'] = _portfolio_focus_subscribe
+app.view_functions['freemium_billing_portal'] = _portfolio_billing_portal
 
 _metrics = {'requests_total': 0, 'provider_success': collections.Counter(), 'provider_failure': collections.Counter()}
 _metrics_lock = threading.Lock()
@@ -284,6 +349,7 @@ def personalized_checklist():
         return jsonify(error='Please select a valid income range.'), 400
     if len(situation) > 1500:
         return jsonify(error='Situation description is too long (max 1500 characters).'), 400
+    enforce_deidentified_public_input(situation)
 
     state_info = _STATES[state_code]
     state_summary = (
@@ -322,7 +388,18 @@ def personalized_checklist():
 @app.route('/health')
 @app.route('/healthz')
 def health():
-    return jsonify(status='ok', federal_benefits=len(_FED['benefits']), states=len(_STATES))
+    return jsonify(
+        status='ok',
+        service='seniorbenefits',
+        candidate_mode=PORTFOLIO_CANDIDATE_MODE,
+        ai_requests_enabled=not PORTFOLIO_CANDIDATE_MODE,
+        workspace_id=PORTFOLIO_WORKSPACE_ID,
+        required_subscription_tier=PORTFOLIO_SUBSCRIPTION_TIER,
+        subscription_price_cents=PORTFOLIO_SUBSCRIPTION_AMOUNT_CENTS,
+        free_preview_limit=PORTFOLIO_FREE_PREVIEW_LIMIT,
+        federal_benefits=len(_FED['benefits']),
+        states=len(_STATES),
+    )
 
 
 @app.route('/metrics')

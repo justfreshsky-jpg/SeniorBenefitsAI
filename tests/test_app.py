@@ -1,6 +1,9 @@
 """Smoke tests for Senior Benefits AI."""
+import json
 import os
+import subprocess
 import sys
+from pathlib import Path
 
 import pytest
 
@@ -21,6 +24,11 @@ def test_health(client):
     assert r.status_code == 200
     body = r.get_json()
     assert body['status'] == 'ok'
+    assert body['service'] == 'seniorbenefits'
+    assert body['workspace_id'] == 'action_packs'
+    assert body['required_subscription_tier'] == 'focus'
+    assert body['subscription_price_cents'] == 999
+    assert body['free_preview_limit'] == 3
     assert body['states'] == 51
     assert body['federal_benefits'] >= 20
 
@@ -31,6 +39,26 @@ def test_home_renders(client):
     assert b'Senior Benefits AI' in r.data
     assert b'California' in r.data
     assert b'Build my checklist' in r.data
+    assert b'Focus \xc2\xb7 $9.99/month' in r.data
+    assert b'No surprise overages' in r.data
+    assert b'Do not include names, exact addresses' in r.data
+
+
+def test_portfolio_checkout_and_status_contract(client):
+    status = client.get('/api/user-status').get_json()
+    assert status['workspace_id'] == 'action_packs'
+    assert status['required_subscription_tier'] == 'focus'
+    assert status['subscription_price_cents'] == 999
+    assert status['free_preview_limit'] == 3
+    assert (
+        client.get('/subscribe').location
+        == 'https://www.freshskyai.com/subscribe?workspace=action_packs'
+    )
+    assert (
+        client.get('/subscribe/yearly').location
+        == 'https://www.freshskyai.com/subscribe?workspace=action_packs'
+    )
+    assert client.get('/billing').location == 'https://www.freshskyai.com/billing'
 
 
 def test_federal_index(client):
@@ -226,6 +254,86 @@ def test_personal_identifiers_are_rejected_with_422(client, monkeypatch):
     assert response.get_json()['code'] == 'sensitive_data_detected'
     assert response.get_json()['categories'] == ['email']
     assert response.headers['Cache-Control'] == 'private, no-store, max-age=0'
+
+
+def test_personal_identifiers_are_rejected_before_provider(client, monkeypatch):
+    import app as app_module
+
+    monkeypatch.setattr(app_module, '_freemium_check', lambda: None)
+
+    def fail_if_called(*_args, **_kwargs):
+        raise AssertionError('Sensitive text reached the provider')
+
+    monkeypatch.setattr(app_module, '_PROVIDERS', [('test', fail_if_called)])
+    response = client.post('/api/personalized-checklist', json={
+        'age': 70,
+        'state': 'CA',
+        'situation': 'Email me at senior@example.com with the result.',
+    })
+
+    assert response.status_code == 422
+    assert response.get_json()['code'] == 'sensitive_data_detected'
+    assert 'email' in response.get_json()['categories']
+
+
+def test_candidate_mode_is_inert_in_a_fresh_process():
+    script = """
+import json
+from app import app
+app.config["TESTING"] = True
+client = app.test_client()
+health = client.get("/health")
+root = client.get("/")
+shared_css = client.get("/freshsky.css")
+blocked = client.post(
+    "/api/personalized-checklist",
+    json={"age": 70, "state": "CA"},
+)
+print(json.dumps({
+    "health": health.get_json(),
+    "root_status": root.status_code,
+    "shared_css_status": shared_css.status_code,
+    "blocked_status": blocked.status_code,
+    "blocked": blocked.get_json(),
+}))
+"""
+    env = dict(os.environ)
+    env['FRESHSKY_CANDIDATE_MODE'] = 'true'
+    result = subprocess.run(
+        [sys.executable, '-c', script],
+        cwd=Path(__file__).resolve().parents[1],
+        env=env,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout.strip().splitlines()[-1])
+    assert payload['health']['candidate_mode'] is True
+    assert payload['health']['ai_requests_enabled'] is False
+    assert payload['root_status'] == 200
+    assert payload['shared_css_status'] == 200
+    assert payload['blocked_status'] == 503
+    assert payload['blocked']['code'] == 'candidate_mode'
+
+
+def test_deploy_workflow_is_zero_traffic_secretless_and_exactly_priced():
+    workflow = (
+        Path(__file__).resolve().parents[1]
+        / '.github'
+        / 'workflows'
+        / 'deploy.yml'
+    ).read_text(encoding='utf-8')
+    assert '--no-traffic' in workflow
+    assert '--clear-secrets' in workflow
+    assert 'FRESHSKY_CANDIDATE_MODE=true' in workflow
+    assert 'FRESHSKY_WORKSPACE_ID=action_packs' in workflow
+    assert 'FRESHSKY_SUBSCRIPTION_TIER=focus' in workflow
+    assert (
+        'FRESHSKY_SUBSCRIPTION_PRICE_ID='
+        'price_1TwEqOCh3Z13FbXdyTubbeVF'
+    ) in workflow
+    assert 'FRESHSKY_SUBSCRIPTION_AMOUNT_CENTS=999' in workflow
 
 
 def test_checklist_result_uses_safe_dom_rendering(client):

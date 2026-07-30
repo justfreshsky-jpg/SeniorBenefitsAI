@@ -1,15 +1,32 @@
 {% extends "layout.html" %}
 {% block hero %}
 <header class="hero">
-  <h1>👵 Find benefits you may qualify for</h1>
-  <p>Explore major federal programs and official state resources for adults 55+ — including Social Security, Medicare, Medicaid LTC, SNAP, SSI, senior housing, and property tax relief — then build a personalized checklist of what to investigate first.</p>
+  <div class="eyebrow">FreshSky Action Packs · Senior Benefits</div>
+  <h1>Turn a confusing benefits search into a clear next-step map.</h1>
+  <p>Explore major federal programs and official state resources for adults 55+, then organize what to verify first. The tool prepares a checklist; agencies make eligibility decisions.</p>
 </header>
 {% endblock %}
 
 {% block content %}
-<div class="card">
+<section class="access-strip" aria-label="Access and safety summary">
+  <div>
+    <strong>3 previews included</strong>
+    <span>Explore before choosing a paid workspace.</span>
+  </div>
+  <div>
+    <strong>Focus · $9.99/month</strong>
+    <span>Select Action Packs for this tool and other guided civic-life workflows.</span>
+  </div>
+  <div>
+    <strong>No surprise overages</strong>
+    <span>AI pauses at your allowance; browsing official directories still works.</span>
+  </div>
+</section>
+
+<div class="card" id="checklist">
   <h2>Get a personalized checklist</h2>
-  <p style="color:var(--muted);margin:0 0 16px;font-size:15.5px;">Tell us a few basics. We'll match you against {{ federal_count }} federal programs and your state's senior programs, and tell you which ones to pursue first.</p>
+  <p style="color:var(--muted);margin:0 0 16px;font-size:15.5px;">Tell us a few broad facts. We will compare them with {{ federal_count }} source-linked federal entries and your state's official resources, then organize questions to investigate.</p>
+  <div class="privacy-note"><strong>Keep it de-identified.</strong> Do not include names, exact addresses, Social Security or Medicare numbers, case numbers, phone numbers, email addresses, banking information, or login details.</div>
   <div class="grid-2">
     <div>
       <label for="f-age">Your age</label>
@@ -80,7 +97,7 @@
   <a href="/federal" style="display:inline-block;margin-top:6px;font-weight:600;">See all federal programs →</a>
 </div>
 
-<div class="card" style="background:#eff6ff;border-color:#bfdbfe;">
+<div class="card">
   <h3 style="margin-top:0;">Three places that screen you in one shot</h3>
   <ul style="margin:0;padding-left:20px;">
     <li><a href="https://www.benefitscheckup.org" rel="noopener" target="_blank">BenefitsCheckUp.org</a> (NCOA) — checks 2,500+ federal, state, and local programs in 15 minutes.</li>
@@ -181,7 +198,7 @@
       const data = await r.json();
       if (!r.ok) {
         if (r.status === 429) {
-          err.textContent = 'Fair-use limit reached. Please come back later so shared AI capacity remains available to everyone.';
+          err.textContent = 'Your preview or plan allowance is used. AI pauses here—there are no automatic overage charges. Choose Action Packs in Focus or manage your plan from FreshSky.';
         } else {
           err.textContent = data.error || 'Something went wrong.';
         }

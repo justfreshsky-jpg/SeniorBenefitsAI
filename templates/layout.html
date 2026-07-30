@@ -7,33 +7,48 @@
   <meta name="description" content="{% block description %}Explore major federal and state benefits you may qualify for at 55, 60, 62, 65, or 70+. Review Social Security, Medicare, Medicaid LTC, SNAP, SSI, LIHEAP, senior housing, and property tax resources from official agencies.{% endblock %}">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👵%3C/text%3E%3C/svg%3E">
   <style>
-    :root { --fg:#1e293b; --bg:#f8fafc; --card:#fff; --accent:#1d4ed8; --accent-hover:#1e40af; --border:#e2e8f0; --muted:#64748b; --warm:#fef3c7; --warm-border:#fcd34d; }
+    :root { --fg:#f8fafc; --bg:#07111f; --card:#101e31; --accent:#5eead4; --accent-hover:#99f6e4; --border:#2b4058; --muted:#bdcad8; --warm:#33270f; --warm-border:#a97819; --ink:#102034; --paper:#f8fafc; }
     * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     html { font-size: 17px; }
-    body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--fg); margin:0; padding:0; line-height:1.6; }
+    body { font-family:ui-sans-serif,system-ui,-apple-system,sans-serif; background:radial-gradient(circle at 15% -10%,#163354 0,transparent 34%),var(--bg); color:var(--fg); margin:0; padding:0; line-height:1.6; }
     a { color:var(--accent); }
     a:hover { color:var(--accent-hover); }
-    .topbar { background:#0f172a; color:#e2e8f0; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; font-size:15px; }
-    .topbar a { color:#e2e8f0; text-decoration:none; }
+    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid #fbbf24; outline-offset:3px; }
+    .skip-link { position:absolute; left:12px; top:-60px; z-index:10; background:#fff; color:#111827; padding:10px 14px; border-radius:8px; }
+    .skip-link:focus { top:10px; }
+    .topbar { background:rgba(5,14,27,.92); border-bottom:1px solid var(--border); color:#e2e8f0; padding:14px clamp(16px,4vw,48px); display:flex; justify-content:space-between; align-items:center; font-size:15px; position:sticky; top:0; z-index:5; backdrop-filter:blur(12px); }
+    .topbar a { color:#f8fafc; text-decoration:none; }
     .topbar nav a { margin-left:18px; font-size:14px; }
-    .topbar .brand { font-weight:600; }
-    header.hero { text-align:center; padding:40px 20px 20px; background:linear-gradient(180deg,#fff 0%,var(--bg) 100%); }
-    header.hero h1 { margin:0; font-size:32px; line-height:1.2; }
-    header.hero p { color:var(--muted); max-width:680px; margin:14px auto 0; font-size:18px; }
-    main { max-width:880px; margin:0 auto; padding:20px 16px 60px; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+    .topbar .brand { font-weight:750; letter-spacing:.01em; }
+    header.hero { text-align:left; max-width:1120px; margin:0 auto; padding:64px 20px 30px; background:transparent; }
+    header.hero h1 { margin:0; max-width:760px; font-size:clamp(36px,6vw,68px); letter-spacing:-.045em; line-height:1.02; }
+    header.hero p { color:var(--muted); max-width:760px; margin:20px 0 0; font-size:clamp(18px,2.5vw,22px); }
+    main { max-width:1120px; margin:0 auto; padding:20px 20px 70px; }
+    .card { background:rgba(16,30,49,.94); border:1px solid var(--border); border-radius:20px; padding:clamp(20px,4vw,32px); margin-bottom:22px; box-shadow:0 20px 55px rgba(0,0,0,.18); }
     .card h2 { margin:0 0 14px; font-size:22px; }
     .card h3 { margin:18px 0 8px; font-size:18px; }
+    .access-strip { display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:1px; padding:1px; background:var(--border); border:1px solid var(--border); border-radius:18px; overflow:hidden; margin-bottom:22px; }
+    .access-strip > div { background:#0d1a2b; padding:20px; }
+    .access-strip strong { display:block; color:#fff; font-size:18px; margin-bottom:4px; }
+    .access-strip span { color:var(--muted); font-size:14px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:800; }
+    .privacy-note { border-left:4px solid var(--accent); background:#0b2630; padding:14px 16px; border-radius:8px; color:#d8fffa; margin:16px 0; }
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    @media (max-width: 640px) { .grid-2 { grid-template-columns:1fr; } html { font-size: 16px; } }
+    @media (max-width: 700px) {
+      .grid-2,.access-strip { grid-template-columns:1fr; }
+      .topbar nav a { margin-left:10px; }
+      .topbar nav a:first-child { display:none; }
+      html { font-size:16px; }
+    }
     label { display:block; font-weight:600; margin-bottom:6px; font-size:15px; }
-    input, select, textarea { width:100%; padding:11px 12px; border:1px solid var(--border); border-radius:8px; font:inherit; background:#fff; }
+    input, select, textarea { width:100%; padding:12px 13px; border:1px solid #52677f; border-radius:9px; font:inherit; background:#f8fafc; color:var(--ink); }
     input:focus, select:focus, textarea:focus { outline:2px solid var(--accent); border-color:var(--accent); }
     textarea { min-height:80px; resize:vertical; }
-    button.primary { background:var(--accent); color:#fff; border:none; padding:13px 22px; border-radius:8px; font-weight:600; cursor:pointer; font-size:16px; }
+    button.primary { background:var(--accent); color:#06201e; border:none; padding:13px 22px; border-radius:9px; font-weight:800; cursor:pointer; font-size:16px; }
     button.primary:hover { background:var(--accent-hover); }
     button.primary:disabled { opacity:.5; cursor:not-allowed; }
-    .output { background:#f1f5f9; padding:18px; border-radius:8px; margin-top:16px; white-space:pre-wrap; font-size:15.5px; line-height:1.65; display:none; }
+    .output { background:#f1f5f9; color:var(--ink); padding:18px; border-radius:8px; margin-top:16px; white-space:pre-wrap; font-size:15.5px; line-height:1.65; display:none; }
     .output.shown { display:block; }
     .error { color:#b91c1c; background:#fef2f2; padding:12px; border-radius:8px; margin-top:12px; display:none; }
     .error.shown { display:block; }
@@ -42,16 +57,16 @@
     @keyframes s { to { transform:rotate(360deg); } }
     .pill { display:inline-block; background:var(--warm); border:1px solid var(--warm-border); border-radius:100px; padding:3px 10px; font-size:13px; font-weight:600; color:#92400e; }
     .pill.muted { background:#f1f5f9; border-color:var(--border); color:var(--muted); font-weight:500; }
-    .ben-card { display:block; padding:16px; border:1px solid var(--border); border-radius:10px; background:#fff; text-decoration:none; color:var(--fg); margin-bottom:10px; transition: border-color .15s; }
+    .ben-card { display:block; padding:16px; border:1px solid var(--border); border-radius:10px; background:#0d1a2b; text-decoration:none; color:var(--fg); margin-bottom:10px; transition: border-color .15s; }
     .ben-card:hover { border-color:var(--accent); }
     .ben-card .name { font-weight:600; font-size:16.5px; color:var(--fg); }
     .ben-card .who { color:var(--muted); font-size:14.5px; margin-top:6px; }
     .crumb { font-size:14px; color:var(--muted); margin-bottom:8px; }
     .crumb a { color:var(--muted); text-decoration:underline; }
     .state-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:8px; margin-top:10px; }
-    .state-grid a { padding:10px 12px; border:1px solid var(--border); border-radius:8px; text-decoration:none; color:var(--fg); font-size:15px; background:#fff; }
-    .state-grid a:hover { border-color:var(--accent); background:#eff6ff; }
-    footer { color:var(--muted); font-size:13px; padding:30px 16px 50px; max-width:880px; margin:0 auto; text-align:center; line-height:1.7; }
+    .state-grid a { padding:10px 12px; border:1px solid var(--border); border-radius:8px; text-decoration:none; color:var(--fg); font-size:15px; background:#0d1a2b; }
+    .state-grid a:hover { border-color:var(--accent); background:#153047; }
+    footer { color:var(--muted); font-size:13px; padding:30px 16px 50px; max-width:1120px; margin:0 auto; text-align:center; line-height:1.7; }
     footer .hulec { font-style:italic; margin-top:8px; }
     footer .links a { color:var(--muted); margin:0 8px; }
   </style>
@@ -62,6 +77,7 @@
   <script src="/freemium.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="topbar">
     <a href="/" class="brand">👵 Senior Benefits AI</a>
     <nav>
@@ -73,7 +89,7 @@
 
   {% block hero %}{% endblock %}
 
-  <main>
+  <main id="main-content">
     {% block content %}{% endblock %}
   </main>
 

@@ -11,30 +11,47 @@ on:
       - 'federal_benefits.json'
       - 'templates/**'
       - 'static/**'
+      - 'tests/**'
+      - 'tools/**'
+      - '.github/workflows/deploy.yml'
+  pull_request:
+    paths:
+      - 'app.py'
+      - 'requirements.txt'
+      - 'Dockerfile'
+      - 'states.json'
+      - 'federal_benefits.json'
+      - 'templates/**'
+      - 'static/**'
+      - 'tests/**'
+      - 'tools/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
-
-      - name: Set up Python
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
           cache: pip
+      - run: python -m pip install -r requirements.txt pytest
+      - run: python -m pytest tests/ -q
 
-      - name: Install test dependencies
-        run: python -m pip install -r requirements.txt pytest
-
-      - name: Run regression tests
-        run: python -m pytest -q
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: Authenticate to Google Cloud (Workload Identity Federation)
         uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
@@ -47,27 +64,110 @@ jobs:
 
       - name: Enforce Cloud Run budget lock
         run: |
-          if ! lock="$(gcloud secrets versions access latest --secret=cloud-run-budget-lock 2>/dev/null)"; then
-            if gcloud secrets describe cloud-run-budget-lock >/dev/null 2>&1; then
-              echo '::error::Cloud Run budget lock exists but could not be read.'
-              exit 1
-            fi
-            echo '::warning::Cloud Run budget lock is not configured yet.'
-            lock="open"
+          if ! lock="$(gcloud secrets versions access latest \
+            --project=neon-glyph-491500-e2 \
+            --secret=cloud-run-budget-lock 2>/dev/null)"; then
+            echo '::error::Cloud Run budget lock is missing or unreadable.'
+            exit 1
           fi
-          if [[ "$lock" == locked:* ]]; then
-            echo '::error::Cloud Run deployments are locked because monthly Cloud Run spend reached the $10 hard limit.'
+          if ! printf '%s' "$lock" \
+            | python3 tools/validate_budget_lock.py; then
+            echo '::error::Cloud Run budget lock is not freshly open.'
             exit 1
           fi
 
-      - name: Deploy to Cloud Run
+      - name: Deploy an inert zero-traffic candidate
         run: |
+          suffix="canary-${GITHUB_SHA:0:12}"
           gcloud run deploy seniorbenefits \
             --source . \
+            --project neon-glyph-491500-e2 \
             --region us-central1 \
-            --update-env-vars=LLM_PRIVACY_PROFILE=us_public \
+            --revision-suffix "$suffix" \
+            --tag "$suffix" \
+            --no-traffic \
+            --service-account freshskyai-runtime@neon-glyph-491500-e2.iam.gserviceaccount.com \
+            --clear-secrets \
+            --update-env-vars FRESHSKY_CANDIDATE_MODE=true,FRESHSKY_WORKSPACE_ID=action_packs,FRESHSKY_SUBSCRIPTION_TIER=focus,FRESHSKY_SUBSCRIPTION_PRICE_ID=price_1TwEqOCh3Z13FbXdyTubbeVF,FRESHSKY_SUBSCRIPTION_AMOUNT_CENTS=999,FRESHSKY_FREE_REQUEST_LIMIT=3,LLM_PRIVACY_PROFILE=us_public \
             --allow-unauthenticated \
+            --memory 512Mi \
             --min-instances=0 \
             --max-instances=5 \
             --cpu-throttling \
             --quiet
+
+      - name: Verify candidate identity, billing contract, and cost guard
+        run: |
+          suffix="canary-${GITHUB_SHA:0:12}"
+          service="$(gcloud run services describe seniorbenefits \
+            --project neon-glyph-491500-e2 \
+            --region us-central1 \
+            --format=json)"
+          candidate_url="$(jq -r \
+            --arg tag "$suffix" \
+            '.status.traffic[] | select(.tag == $tag) | .url' \
+            <<<"$service")"
+          candidate_revision="$(jq -r \
+            --arg tag "$suffix" \
+            '.status.traffic[] | select(.tag == $tag) | .revisionName' \
+            <<<"$service")"
+          if [[ -z "$candidate_url" || -z "$candidate_revision" ]]; then
+            echo '::error::Tagged candidate was not resolved.'
+            exit 1
+          fi
+          candidate_env="$(jq -c '
+            .spec.template.spec.containers[0].env
+            | map(select(.value != null) | {key: .name, value: .value})
+            | from_entries
+          ' <<<"$service")"
+          jq -e '
+            .FRESHSKY_WORKSPACE_ID == "action_packs"
+            and .FRESHSKY_SUBSCRIPTION_TIER == "focus"
+            and .FRESHSKY_SUBSCRIPTION_PRICE_ID
+              == "price_1TwEqOCh3Z13FbXdyTubbeVF"
+            and .FRESHSKY_SUBSCRIPTION_AMOUNT_CENTS == "999"
+            and .FRESHSKY_CANDIDATE_MODE == "true"
+          ' <<<"$candidate_env" >/dev/null
+          production="$(jq -c \
+            '[.status.traffic[] | select((.percent // 0) > 0) | {revisionName,percent}]' \
+            <<<"$service")"
+          if [[ "$(jq '[.[] | .percent] | add' <<<"$production")" != "100" ]]; then
+            echo '::error::Existing production traffic no longer totals 100 percent.'
+            exit 1
+          fi
+          health="$(curl --fail --silent --show-error \
+            --proto '=https' --tlsv1.2 \
+            "$candidate_url/health")"
+          jq -e '
+            .status == "ok"
+            and .service == "seniorbenefits"
+            and .candidate_mode == true
+            and .ai_requests_enabled == false
+            and .workspace_id == "action_packs"
+            and .required_subscription_tier == "focus"
+            and .subscription_price_cents == 999
+            and .free_preview_limit == 3
+            and .federal_benefits >= 20
+            and .states == 51
+          ' <<<"$health" >/dev/null
+          root="$(curl --fail --silent --show-error \
+            --proto '=https' --tlsv1.2 \
+            "$candidate_url/")"
+          grep -Fq 'Focus · $9.99/month' <<<"$root"
+          grep -Fq 'Do not include names, exact addresses' <<<"$root"
+          code="$(curl --silent --show-error \
+            --proto '=https' --tlsv1.2 \
+            --output candidate-response.json \
+            --write-out '%{http_code}' \
+            --request POST \
+            --header 'Content-Type: application/json' \
+            --data '{"age":70,"state":"CA"}' \
+            "$candidate_url/api/personalized-checklist")"
+          if [[ "$code" != "503" ]] \
+            || ! jq -e '.code == "candidate_mode"' \
+              candidate-response.json >/dev/null; then
+            echo '::error::Candidate paid-work guard failed.'
+            exit 1
+          fi
+          echo "candidate_revision=$candidate_revision"
+          echo "production_traffic=$production"
