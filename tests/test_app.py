@@ -31,6 +31,9 @@ def test_home_renders(client):
     assert b'Senior Benefits AI' in r.data
     assert b'California' in r.data
     assert b'Build my checklist' in r.data
+    assert b'Three previews are included' in r.data
+    assert b'Focus is $9.99 per month' in r.data
+    assert b'no automatic overage charges' in r.data.lower()
 
 
 def test_federal_index(client):
