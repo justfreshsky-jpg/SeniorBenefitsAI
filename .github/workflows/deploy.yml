@@ -1,17 +1,6 @@
 name: Deploy
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'app.py'
-      - 'requirements.txt'
-      - 'Dockerfile'
-      - 'states.json'
-      - 'federal_benefits.json'
-      - 'templates/**'
-      - 'static/**'
-      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
