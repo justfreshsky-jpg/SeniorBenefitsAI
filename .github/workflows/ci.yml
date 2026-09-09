@@ -1,16 +1,6 @@
 name: CI
 
 on:
-  pull_request:
-    paths:
-      - 'app.py'
-      - 'requirements.txt'
-      - 'states.json'
-      - 'federal_benefits.json'
-      - 'templates/**'
-      - 'tests/**'
-      - '.github/workflows/ci.yml'
-      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
