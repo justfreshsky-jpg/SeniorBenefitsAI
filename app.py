@@ -74,6 +74,10 @@ _install_revenue(
     brand='Senior Benefits AI',
     primary_url='https://seniorbenefits.freshskyai.com/',
     category='benefits',
+    description=(
+        'Organize federal and state benefit research with current official '
+        'links, plain-language explanations, and a reviewable checklist.'
+    ),
 )
 
 from freshsky_common.freemium import register_freemium  # noqa: E402

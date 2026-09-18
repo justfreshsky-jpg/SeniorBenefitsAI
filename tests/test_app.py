@@ -34,6 +34,8 @@ def test_home_renders(client):
     assert b'Three previews are included' in r.data
     assert b'Focus is $9.99 per month' in r.data
     assert b'no automatic overage charges' in r.data.lower()
+    assert b'HULEC' not in r.data
+    assert b'halal' not in r.data.lower()
 
 
 def test_federal_index(client):
