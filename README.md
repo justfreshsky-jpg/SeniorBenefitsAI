@@ -1,5 +1,14 @@
 # Senior Benefits AI
 
+> Source policy update (0.8.0): AI assistance defaults to unavailable. Only a
+> currently verified free Groq account/model with reviewed privacy settings may
+> run bounded non-sensitive text requests; existing keys alone do not enable it.
+> There is no paid fallback. Deterministic/manual functions and existing records
+> remain available. This source change is not a deployment, product-readiness
+> claim or approval to collect private documents. Legacy capability descriptions
+> below require separate verification before public promotion.
+
+
 Federal and state benefits navigator for Americans 55+. Forwards users to authoritative .gov resources rather than duplicating them.
 
 - **Live:** https://seniorbenefits.freshskyai.com (after first deploy + Cloud Run domain mapping)

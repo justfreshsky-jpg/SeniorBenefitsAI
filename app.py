@@ -20,6 +20,22 @@ from flask import Flask, abort, jsonify, render_template, request
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
+
+# Free inference is checked before preview/usage hooks, only on AI routes.
+from freshsky_common.ai_cost_policy import ai_availability as _ai_availability
+_FREE_AI_ENDPOINTS = frozenset(['personalized_checklist'])
+
+@app.before_request
+def _free_ai_availability_gate():
+    if request.method != 'POST' or request.endpoint not in _FREE_AI_ENDPOINTS:
+        return None
+    if not _ai_availability()['available']:
+        from flask import jsonify
+        return jsonify(error='AI assistance is unavailable. Use the available manual or deterministic tools.',
+                       code='ai_unavailable', no_usage_charge=True, ai_used=False), 503
+    return None
+
+
 from freshsky_common.hulec import install_hulec  # noqa: E402
 install_hulec(app, slug="seniorbenefits")
 app.secret_key = os.environ.get('SECRET_KEY', os.urandom(32))
