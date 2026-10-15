@@ -257,3 +257,11 @@ def test_checklist_age_bounds(client):
 def test_checklist_unknown_state(client):
     r = client.post('/api/personalized-checklist', json={'age': 65, 'state': 'ZZ'})
     assert r.status_code == 400
+
+
+# Existing tests supply synthetic model responses; account eligibility is explicit.
+import pytest as _free_policy_pytest
+@_free_policy_pytest.fixture(autouse=True)
+def _verified_free_test_context(monkeypatch):
+    import app as _test_app
+    monkeypatch.setattr(_test_app, '_ai_availability', lambda: {'available': True})
